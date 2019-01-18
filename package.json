@@ -7,6 +7,8 @@
   "author": "Gridonic <hello@gridonic.ch>",
   "license": "MIT",
   "dependencies": {
+    "clean-webpack-plugin": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",

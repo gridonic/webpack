@@ -1,9 +1,8 @@
-const entry = require('../entry');
-const output = require('../output');
-const hmr = require('../hmr');
+const { entry, output } = require('../options');
+const { clean, html, hmr } = require('../plugins');
 
 // @see https://webpack.js.org/guides/development/
-module.exports = {
+module.exports = (options = {}) => ({
 
     // @see https://webpack.js.org/concepts/mode/
     mode: 'development',
@@ -27,6 +26,8 @@ module.exports = {
 
     // @see https://webpack.js.org/configuration/plugins/
     plugins: [
+        clean(options.clean),
+        html(options.html), // @todo How to handle multiple html files?
         hmr()
     ],
 
@@ -34,4 +35,4 @@ module.exports = {
     output: Object.assign({}, output, {
         filename: '[name].js'
     })
-};
+});

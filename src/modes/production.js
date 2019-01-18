@@ -1,8 +1,8 @@
-const entry = require('../entry');
-const output = require('../output');
+const { entry, output } = require('../options');
+const { clean, html } = require('../plugins');
 
 // @see https://webpack.js.org/guides/production/
-module.exports = {
+module.exports = (options = {}) => ({
 
     // @see https://webpack.js.org/concepts/mode/
     mode: 'production',
@@ -13,8 +13,14 @@ module.exports = {
     // @see https://webpack.js.org/guides/production/#source-mapping
     devtool: 'source-map',
 
+    // @see https://webpack.js.org/configuration/plugins/
+    plugins: [
+        clean(options.clean),
+        html(options.html)
+    ],
+
     // @see https://webpack.js.org/configuration/output/
     output: Object.assign({}, output, {
         filename: '[name].[hash].js'
     })
-};
+});
