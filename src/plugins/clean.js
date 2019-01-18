@@ -7,5 +7,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const output = require('../options/output');
 
 module.exports = (paths = [output.path], options = {
-    root: process.cwd()
+    root: process.cwd(),
+    verbose: false
 }) => new CleanWebpackPlugin(paths, options);
