@@ -1,6 +1,7 @@
 const entry = require('../entry');
 const output = require('../output');
 
+// @see https://webpack.js.org/guides/production/
 module.exports = {
 
     // @see https://webpack.js.org/concepts/mode/
