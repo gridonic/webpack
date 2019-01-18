@@ -1,5 +1,5 @@
-const { clean, html, hmr } = require('../plugins');
 const { entry, output, devServer } = require('../options');
+const { clean, html, hmr, friendlyErrors } = require('../plugins');
 
 // @see https://webpack.js.org/guides/development/
 module.exports = (options = {}) => ({
@@ -17,6 +17,7 @@ module.exports = (options = {}) => ({
 
     // @see https://webpack.js.org/configuration/plugins/
     plugins: [
+        friendlyErrors(),
         clean(options.clean),
         html(options.html), // @todo How to handle multiple html files?
         hmr()

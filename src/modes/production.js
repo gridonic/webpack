@@ -1,5 +1,5 @@
 const { entry, output } = require('../options');
-const { clean, html } = require('../plugins');
+const { clean, html, friendlyErrors } = require('../plugins');
 
 // @see https://webpack.js.org/guides/production/
 module.exports = (options = {}) => ({
@@ -15,6 +15,7 @@ module.exports = (options = {}) => ({
 
     // @see https://webpack.js.org/configuration/plugins/
     plugins: [
+        friendlyErrors(),
         clean(options.clean),
         html(options.html)
     ],
