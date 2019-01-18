@@ -1,9 +1,5 @@
-<p align="center">
-    <a href="https://git.gridonic.ch/gridonic/webpack">
-        <img src="./media/logo.svg" width="256" alt="webpack">
-    </a><br><br>
-</p>
-<p align="center">Our webpack setup.</p><br>
+![webpack](media/logo.svg)
+Our webpack setup.
 
 ## How to use?
 
