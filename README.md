@@ -1,8 +1,4 @@
 ![webpack](media/logo.png)
-{: .text-center}
-  
-Our webpack setup.
-{: .text-center}
 
 ## How to use?
 
