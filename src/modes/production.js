@@ -8,6 +8,10 @@ module.exports = {
 
     entry,
 
+    // @see https://webpack.js.org/configuration/devtool/
+    // @see https://webpack.js.org/guides/production/#source-mapping
+    devtool: 'source-map',
+
     // @see https://webpack.js.org/configuration/output/
     output: Object.assign({}, output, {
         filename: '[name].[hash].js'

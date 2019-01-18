@@ -8,6 +8,9 @@ module.exports = {
 
     entry,
 
+    // @see https://webpack.js.org/configuration/devtool/
+    devtool: 'inline-source-map',
+
     // @see https://webpack.js.org/configuration/output/
     output: Object.assign({}, output, {
         filename: '[name].js'
