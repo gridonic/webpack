@@ -1,4 +1,4 @@
-![webpack](media/logo.svg)
+![webpack](media/logo.png)  
 Our webpack setup.
 
 ## How to use?
