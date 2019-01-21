@@ -44,19 +44,19 @@ Then you’ll just have to use those two npm scripts in your `package.json`…
 
 If you need to customize the webpack configuration we recommend setting up 2 (**two**) webpack configuration files. One for **development** and one for **production mode**.
 
-- ```js
-  // webpack.dev.js
-  const { development } = require('@gridonic/webpack');
-  
-  module.exports = development();
-  ```
+```js
+// webpack.dev.js
+const { development } = require('@gridonic/webpack');
 
-- ```js
-  // webpack.prod.js
-  const { production } = require('@gridonic/webpack');
-  
-  module.exports = production();
-  ```
+module.exports = development();
+```
+
+```js
+// webpack.prod.js
+const { production } = require('@gridonic/webpack');
+
+module.exports = production();
+```
 
 Almost done. Just add these two scripts to your `package.json`…
 
@@ -77,28 +77,30 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 
 ### List of available presets
 
-- [`raw`]
+- [`raw`]  
   Use this in case you need to import files as strings.
 
 ### How to use them?
 
-Let’s say you need to import `.csv` files for example. In that case you’ll need to add the **raw** preset and adjust the test RegEx.
+Let’s say you need to import `.csv` files for example. In that case you’ll need to add the [`raw`] preset and adjust the test RegEx.
 
 ```js
-  // webpack.dev.js
-  const { development } = require('@gridonic/webpack');
-  
-  module.exports = development({
-    presets: [raw({
-        test: /\.csv$/
-    })]
-  });
+// webpack.dev.js
+const { development } = require('@gridonic/webpack');
+
+module.exports = development({
+    presets: [
+        raw({ test: /\.csv$/})
+    ]
+});
 ```
 
 That’s it. You now can import your `.csv` files as strings.
 
 ```js
-import MyCSV from './data.csv';
+import TopTenCommits from './TopTenCommits.csv';
+
+console.log(TopTenCommits);
 ```
 
 
