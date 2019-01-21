@@ -1,7 +1,7 @@
 const merge = require('webpack-merge');
 const delve = require('dlv');
 
-const { clean, html, hmr, friendlyErrors } = require('../plugins');
+const { clean, html, hmr, friendlyErrors, errorOverlay } = require('../plugins');
 const { entry, output, resolve } = require('../options');
 
 module.exports = (options = {}) => ({
@@ -15,6 +15,7 @@ module.exports = (options = {}) => ({
     // @see https://webpack.js.org/configuration/plugins/
     plugins: [
         friendlyErrors(),
+        errorOverlay(),
         clean(
             merge({
                 path: delve(options, 'output.path'),
