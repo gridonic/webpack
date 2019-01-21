@@ -21,7 +21,6 @@ If you don’t have to tweak or adjust our default configurations this one-liner
 
 ```js
 // webpack.config.js
-
 const { development, production } = require('@gridonic/webpack');
 
 module.exports = env => env === 'production' ? production() : development();
