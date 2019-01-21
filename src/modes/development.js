@@ -23,5 +23,6 @@ module.exports = (options = {}) => merge({
 
     },
     common(options),
-    css(options.css)
+    css(options.css),
+    sass(options.sass)
 );

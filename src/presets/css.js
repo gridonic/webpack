@@ -16,7 +16,16 @@ module.exports = (options = {}) => {
                     'style-loader',
 
                     // @see https://github.com/webpack-contrib/css-loader
-                    'css-loader'
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            // @see https://github.com/webpack-contrib/css-loader#importloaders
+                            importLoaders: 1
+                        }
+                    },
+
+                    // @see https://github.com/postcss/postcss-loader
+                    'postcss-loader'
                 ]
             }]
         }

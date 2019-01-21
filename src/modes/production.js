@@ -27,5 +27,10 @@ module.exports = (options = {}) => merge({
             filename: '[name].[hash].css'
         }, options.css)
     ),
-    sass()
+    sass(
+        merge({
+            extract: true,
+            filename: '[name].[hash].css'
+        }, options.sass)
+    )
 );
