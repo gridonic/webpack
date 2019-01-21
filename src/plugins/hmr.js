@@ -1,3 +1,3 @@
 const webpack = require('webpack');
 
-module.exports = () => new webpack.HotModuleReplacementPlugin();
+module.exports = (options = {}) => new webpack.HotModuleReplacementPlugin(options);

@@ -1,12 +1,20 @@
-const process = require('process');
+const delve = require('dlv');
+
+const output = require('../options/output');
+const context = require('../options/context');
 
 // @see https://github.com/johnagan/clean-webpack-plugin
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-// Output is required to get current set path.
-const output = require('../options/output');
-
-module.exports = (paths = [output.path], options = {
-    root: process.cwd(),
+const defaults = {
+    path: output().path,
+    root: context(),
     verbose: false
-}) => new CleanWebpackPlugin(paths, options);
+};
+
+module.exports = (options = {}) => new CleanWebpackPlugin(
+    delve(options, 'path', defaults.path), {
+        root: delve(options, 'root', defaults.root),
+        verbose: delve(options, 'root', defaults.verbose)
+    }
+);

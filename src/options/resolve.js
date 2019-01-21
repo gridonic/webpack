@@ -1,11 +1,20 @@
 const path = require('path');
-const process = require('process');
+const delve = require('dlv');
+
+const context = require('./context');
+
+const defaults = {
+    alias: {
+        '@': path.join(context(), 'src')
+    }
+};
 
 // @see https://webpack.js.org/configuration/resolve/
-module.exports = {
+module.exports = (options = {}) => ({
 
     // @see https://webpack.js.org/configuration/resolve/#resolve-alias
     alias: {
-        '@': path.join(process.cwd(), 'src')
+        '@': delve(options, 'alias.@', defaults.alias['@'])
     }
-};
+
+});

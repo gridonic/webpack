@@ -1,34 +1,27 @@
-const { entry, output, devServer, resolve } = require('../options');
-const { clean, html, hmr, friendlyErrors } = require('../plugins');
+const merge = require('webpack-merge');
+const delve = require('dlv');
+
+const { devServer } = require('../options');
+const { common, css, sass } = require('../presets');
 
 // @see https://webpack.js.org/guides/development/
-module.exports = (options = {}) => ({
+module.exports = (options = {}) => merge({
 
-    // @see https://webpack.js.org/concepts/mode/
-    mode: 'development',
+        // @see https://webpack.js.org/concepts/mode/
+        mode: 'development',
 
-    // @see https://webpack.js.org/configuration/entry-context/
-    entry,
+        // @see https://webpack.js.org/configuration/devtool/
+        devtool: 'inline-source-map',
 
-    // @see https://webpack.js.org/configuration/devtool/
-    devtool: 'inline-source-map',
+        // In most cases the output path is also the content base for the
+        // webpack dev-server.
+        //
+        // @see https://webpack.js.org/configuration/dev-server/
+        devServer: devServer(
+            merge({ contentBase: delve(options, 'output.path') }, options.devServer)
+        )
 
-    // @see https://webpack.js.org/configuration/dev-server/
-    devServer,
-
-    // @see https://webpack.js.org/configuration/resolve/
-    resolve,
-
-    // @see https://webpack.js.org/configuration/plugins/
-    plugins: [
-        friendlyErrors(),
-        clean(options.clean),
-        html(options.html), // @todo How to handle multiple html files?
-        hmr()
-    ],
-
-    // @see https://webpack.js.org/configuration/output/
-    output: Object.assign({}, output, {
-        filename: '[name].js'
-    })
-});
+    },
+    common(options),
+    css(options.css)
+);
