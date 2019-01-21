@@ -13,6 +13,8 @@ No matter if you are going to use it out of the box or if you adjust it (heavily
 
 Simple, right? 
 
+<br>
+
 ### Out of the box
 
 If you don’t have to tweak or adjust our default configurations this one-liner*ish* webpack configuration might just do fine.
@@ -34,6 +36,8 @@ Then you’ll just have to use those two npm scripts in your `package.json`…
   }
 }
 ``` 
+
+<br>
 
 ### More customized
 
