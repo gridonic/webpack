@@ -76,8 +76,10 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 
 ### List of available presets
 
-- [`raw`]  
-  > Use this in case you need to import files as strings.
+| Preset | Description |
+| -------- | -------- |
+| [`raw`] | Use this in case you need to import files as strings. |
+
 
 ### How to use them?
 
