@@ -3,6 +3,7 @@ const delve = require('dlv');
 const miniCssExtract = require('../plugins/miniCssExtract');
 
 const defaults = {
+    mode: 'development',
     extract: false
 };
 
@@ -25,7 +26,17 @@ module.exports = (options = {}) => {
                     },
 
                     // @see https://github.com/postcss/postcss-loader
-                    'postcss-loader'
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            config: {
+                                ctx: {
+                                    // @see https://github.com/postcss/postcss-loader/issues/353#issuecomment-386756190
+                                    mode: delve(options, 'mode', defaults.mode)
+                                }
+                            }
+                        }
+                    }
                 ]
             }]
         }

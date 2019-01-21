@@ -2,11 +2,22 @@ const merge = require('webpack-merge');
 
 const { common, css, sass } = require('../presets');
 
+const defaults = {
+    mode: 'production',
+    output: {
+        filename: '[name].[hash].js'
+    },
+    css: {
+        extract: true,
+        filename: '[name].[hash].css'
+    }
+};
+
 // @see https://webpack.js.org/guides/production/
 module.exports = (options = {}) => merge({
 
         // @see https://webpack.js.org/concepts/mode/
-        mode: 'production',
+        mode: defaults.mode,
 
         // @see https://webpack.js.org/configuration/devtool/
         // @see https://webpack.js.org/guides/production/#source-mapping
@@ -14,23 +25,9 @@ module.exports = (options = {}) => merge({
 
     },
     common(
-        merge({
-            output: {
-                filename: '[name].[hash].js'
-            }
-        }),
+        merge({ output: defaults.output }),
         options
     ),
-    css(
-        merge({
-            extract: true,
-            filename: '[name].[hash].css'
-        }, options.css)
-    ),
-    sass(
-        merge({
-            extract: true,
-            filename: '[name].[hash].css'
-        }, options.sass)
-    )
+    css(merge({ mode: defaults.mode }, defaults.css, options.css)),
+    sass(merge({ mode: defaults.mode }, defaults.css, options.sass)),
 );
