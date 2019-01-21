@@ -4,7 +4,11 @@ const delve = require('dlv');
 const { clean, html, hmr, friendlyErrors, errorOverlay } = require('../plugins');
 const { entry, output, resolve } = require('../options');
 
-module.exports = (options = {}) => ({
+const css = require('./css');
+const sass = require('./sass');
+const babel = require('./babel');
+
+module.exports = (options = {}) => merge({
 
     // @see https://webpack.js.org/configuration/entry-context/
     entry: entry(options.entry),
@@ -28,4 +32,9 @@ module.exports = (options = {}) => ({
 
     // @see https://webpack.js.org/configuration/output/
     output: output(options.output)
-});
+
+},
+    css(merge({ mode: options.mode }, options.css)),
+    sass(merge({ mode: options.mode }, options.sass)),
+    babel(merge({ mode: options.babel }, options.babel))
+);

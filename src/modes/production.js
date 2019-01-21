@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
+const delve = require('dlv');
 
-const { common, css, sass, babel } = require('../presets');
+const { common } = require('../presets');
 
 const defaults = {
     mode: 'production',
@@ -24,11 +25,12 @@ module.exports = (options = {}) => merge({
         devtool: 'source-map'
 
     },
-    common(
-        merge({ output: defaults.output }),
-        options
-    ),
-    css(merge({ mode: defaults.mode }, defaults.css, options.css)),
-    sass(merge({ mode: defaults.mode }, defaults.css, options.sass)),
-    babel(options.babel)
+
+    // Merge presets that are available
+    // by default in development/production
+    common(merge(defaults, options)),
+
+
+    // Merge any presets given by user configuration
+    ...delve(options, 'presets', [])
 );
