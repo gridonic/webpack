@@ -17,13 +17,13 @@ Simple, right?
 
 ### Out of the box
 
-If you don’t have to tweak or adjust our default configurations this one-liner*ish* webpack configuration might just do fine.
+If you don’t have to tweak or adjust our default configurations this one-liner webpack configuration might just do fine.
 
 ```js
 // webpack.config.js
-const { development, production } = require('@gridonic/webpack');
-
-module.exports = env => env === 'production' ? production() : development();
+module.exports = env => require('@gridonic/webpack')[
+    env === 'production' ? 'production' : 'development'
+]();
 ```
 
 Then you’ll just have to use those two npm scripts in your `package.json`…
@@ -77,17 +77,17 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 ### List of available presets
 
 - [`raw`]  
-  Use this in case you need to import files as strings.
+  > Use this in case you need to import files as strings.
 
 ### How to use them?
 
-Let’s say you need to import `.csv` files for example. In that case you’ll need to add the [`raw`] preset and adjust the test RegEx.
+Let’s say you need to import `.csv` files for example. In that case you’ll need to add the [`raw`] preset and adjust the `test` RegEx.
 
 ```js
-// webpack.dev.js
-const { development } = require('@gridonic/webpack');
-
-module.exports = development({
+// webpack.config.js
+module.exports = env => require('@gridonic/webpack')[
+    env === 'production' ? 'production' : 'development'
+]({
     presets: [
         raw({ test: /\.csv$/})
     ]
