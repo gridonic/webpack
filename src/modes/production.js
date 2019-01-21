@@ -1,6 +1,6 @@
 const merge = require('webpack-merge');
 
-const { common, css, sass } = require('../presets');
+const { common, css, sass, babel } = require('../presets');
 
 const defaults = {
     mode: 'production',
@@ -30,4 +30,5 @@ module.exports = (options = {}) => merge({
     ),
     css(merge({ mode: defaults.mode }, defaults.css, options.css)),
     sass(merge({ mode: defaults.mode }, defaults.css, options.sass)),
+    babel(options.babel)
 );

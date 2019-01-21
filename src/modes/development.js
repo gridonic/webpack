@@ -2,7 +2,7 @@ const merge = require('webpack-merge');
 const delve = require('dlv');
 
 const { devServer } = require('../options');
-const { common, css, sass } = require('../presets');
+const { common, css, sass, babel } = require('../presets');
 
 // @see https://webpack.js.org/guides/development/
 module.exports = (options = {}) => merge({
@@ -24,5 +24,6 @@ module.exports = (options = {}) => merge({
     },
     common(options),
     css(options.css),
-    sass(options.sass)
+    sass(options.sass),
+    babel(options.babel)
 );
