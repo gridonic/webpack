@@ -21,7 +21,7 @@ If you don’t have to tweak or adjust our default configurations this one-liner
 ```js
 const { development, production } = require('@gridonic/webpack');
 
-module.exports = env => env === 'production' ? production : development;
+module.exports = env => env === 'production' ? production() : development();
 ```
 
 Then you’ll just have to use those two npm scripts in your `package.json`…
@@ -44,7 +44,7 @@ If you need to customize the webpack configuration we recommend setting up 2 (**
   ```js
   const { development } = require('@gridonic/webpack');
   
-  module.exports = development;
+  module.exports = development();
   ```
 
 - `webpack.prod.js`
@@ -52,7 +52,7 @@ If you need to customize the webpack configuration we recommend setting up 2 (**
   ```js
   const { production } = require('@gridonic/webpack');
   
-  module.exports = production;
+  module.exports = production();
   ```
 
 Almost done. Just add these two scripts to your `package.json`…
