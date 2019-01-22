@@ -7,6 +7,7 @@ const { entry, output, resolve } = require('../options');
 const css = require('./css');
 const sass = require('./sass');
 const js = require('./js');
+const image = require('./image');
 
 module.exports = (options = {}) => merge({
 
@@ -50,5 +51,6 @@ module.exports = (options = {}) => merge({
 },
     css(merge({ mode: options.mode }, options.css)),
     sass(merge({ mode: options.mode }, options.sass)),
-    js(merge({ mode: options.mode }, options.js))
+    js(merge({ mode: options.mode }, options.js)),
+    image(merge({ mode: options.mode }, options.image)),
 );

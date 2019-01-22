@@ -30,7 +30,6 @@ module.exports = (options = {}) => merge({
     // by default in development/production
     common(merge(defaults, options)),
 
-
     // Merge any presets given by user configuration
     ...delve(options, 'presets', [])
 );
