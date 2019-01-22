@@ -36,6 +36,11 @@ module.exports = (options = {}) => {
                     {
                         loader: 'url-loader',
                         options: {
+
+                            // @see https://github.com/webpack-contrib/file-loader
+                            // @todo Maybe https://github.com/herrstucki/responsive-loader is more interesting?
+                            fallback: 'file-loader',
+
                             limit: delve(options, 'limit', defaults.limit)
                         }
                     },
