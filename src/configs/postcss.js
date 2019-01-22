@@ -1,12 +1,8 @@
 const delve = require('dlv');
 
 const defaults = {
-    autoprefixer: {
-        grid: true
-    },
-    replace: {
-        data: {}
-    },
+    autoprefixer: { },
+    replace: {},
     cssnano: {}
 };
 
