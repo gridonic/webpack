@@ -31,7 +31,10 @@ module.exports = (options = {}) => merge({
     ],
 
     // @see https://webpack.js.org/configuration/output/
-    output: output(options.output)
+    output: output(options.output),
+
+    // @see https://webpack.js.org/configuration/stats/
+    stats: false
 
 },
     css(merge({ mode: options.mode }, options.css)),
