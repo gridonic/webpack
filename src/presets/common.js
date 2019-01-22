@@ -6,7 +6,7 @@ const { entry, output, resolve } = require('../options');
 
 const css = require('./css');
 const sass = require('./sass');
-const babel = require('./babel');
+const js = require('./js');
 
 module.exports = (options = {}) => merge({
 
@@ -39,5 +39,5 @@ module.exports = (options = {}) => merge({
 },
     css(merge({ mode: options.mode }, options.css)),
     sass(merge({ mode: options.mode }, options.sass)),
-    babel(merge({ mode: options.babel }, options.babel))
+    js(merge({ mode: options.mode }, options.js))
 );
