@@ -1,5 +1,13 @@
 const delve = require('dlv');
 
+const defaults = {
+
+    // @see https://eslint.org/docs/developer-guide/nodejs-api#cliengine
+    eslint: {
+        fix: true
+    }
+};
+
 module.exports = (options = {}) => {
     const result = {
         module: {
@@ -17,8 +25,6 @@ module.exports = (options = {}) => {
     if (delve(options, 'mode') === 'production') {
         result.module.rules[0].use.push({
             loader: 'eslint-loader',
-
-            // @see https://eslint.org/docs/developer-guide/nodejs-api#cliengine
             options: {
                 fix: delve(options, 'eslint.fix', defaults.eslint.fix)
             }
