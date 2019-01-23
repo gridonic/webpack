@@ -21,6 +21,7 @@ If you don’t have to tweak or adjust our default configurations this one-liner
 
 ```js
 // webpack.config.js
+
 module.exports = env => require('@gridonic/webpack')[
     env === 'production' ? 'production' : 'development'
 ]();
@@ -45,6 +46,7 @@ If you need to customize the webpack configuration we recommend setting up 2 (**
 
 ```js
 // webpack.dev.js
+
 const { development } = require('@gridonic/webpack');
 
 module.exports = development();
@@ -52,6 +54,7 @@ module.exports = development();
 
 ```js
 // webpack.prod.js
+
 const { production } = require('@gridonic/webpack');
 
 module.exports = production();
@@ -74,6 +77,8 @@ Almost done. Just add these two scripts to your `package.json`…
 
 Our webpack setup should be flexible and simple to use at the same time. That’s why we have configurable presets for tasks that come up frequently but are not included in the default core configuration.
 
+<br>
+
 ### List of available presets
 
 | Preset | Description |
@@ -82,12 +87,17 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 | [`vue`] | Use this if you are going to develop a Vue application. |
 
 
-### How to use them?
+<br>
+
+### Examples
+
+#### Importing arbitrary files as strings
 
 Let’s say you need to import `.csv` files for example. In that case you’ll need to add the [`raw`] preset and adjust the `test` RegEx.
 
 ```js
 // webpack.config.js
+
 module.exports = env => require('@gridonic/webpack')[
     env === 'production' ? 'production' : 'development'
 ]({
@@ -105,6 +115,53 @@ import TopTenCommits from './TopTenCommits.csv';
 console.log(TopTenCommits);
 ```
 
+<br>
+
+#### Develop a Vue.js application
+
+Setting up the build environment for a Vue.js application is straight forward.
+
+```js
+// webpack.config.js
+
+const {
+    development,
+    production
+} = require('@gridonic/webpack');
+
+module.exports = (env) => {
+    const config = env === 'production' ? production : development;
+
+    return config({
+        presets: ['vue']
+    });
+};
+```
+
+```js
+// babel.config.js
+
+module.exports = require('@gridonic/webpack').configs.vue.babel();
+```
+
+```js
+// .eslintrc.js
+
+module.exports = require('@gridonic/webpack').configs.vue.eslint();
+```
+
+```js
+// postcss.config.js
+
+const pkg = require('./package.json');
+
+module.exports = ({ options }) => require('@gridonic/webpack').configs.postcss({
+    mode: options.mode,
+    replace: {
+        data: pkg
+    }
+});
+```
 
 
 [`raw`]: ./src/presets/raw.js
