@@ -84,7 +84,7 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 | Preset | Description |
 | -------- | -------- |
 | [`raw`] | Use this in case you need to import files as strings. |
-| [`vue`] | Use this if you are going to develop a Vue application. |
+| [`vue`] | Use this if you are going to develop a [Vue.js] application. |
 
 
 <br>
@@ -117,9 +117,9 @@ console.log(TopTenCommits);
 
 <br>
 
-#### Develop a Vue.js application
+#### Develop a [Vue.js] application
 
-Setting up the build environment for a Vue.js application is straight forward.
+Setting up the build environment for a [Vue.js] application is straight forward.
 
 ```js
 // webpack.config.js
@@ -166,3 +166,5 @@ module.exports = ({ options }) => require('@gridonic/webpack').configs.postcss({
 
 [`raw`]: ./src/presets/raw.js
 [`vue`]: ./src/presets/vue.js
+
+[Vue.js]: https://vuejs.org/
