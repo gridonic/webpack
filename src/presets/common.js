@@ -2,7 +2,7 @@ const merge = require('webpack-merge');
 const delve = require('dlv');
 
 const { clean, html, hmr, friendlyErrors, errorOverlay } = require('../plugins');
-const { entry, output, resolve } = require('../options');
+const { entry, output, resolve, stats } = require('../options');
 
 const css = require('./css');
 const sass = require('./sass');
@@ -35,18 +35,7 @@ module.exports = (options = {}) => merge({
     output: output(options.output),
 
     // @see https://webpack.js.org/configuration/stats/
-    stats: {
-        all: false,
-        assets: true,
-        builtAt: true,
-        colors: true,
-        env: true,
-        hash: true,
-        performance: true,
-        publicPath: true,
-        timings: true,
-        version: true
-    }
+    stats
 
 },
     css(merge({ mode: options.mode }, options.css)),
