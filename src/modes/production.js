@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const delve = require('dlv');
 
+const { handlePreset } = require('../helpers');
 const { common } = require('../presets');
 
 const defaults = {
@@ -31,5 +32,7 @@ module.exports = (options = {}) => merge({
     common(merge(defaults, options)),
 
     // Merge any presets given by user configuration
-    ...delve(options, 'presets', [])
+    ...delve(options, 'presets', []).map(
+        preset => handlePreset(preset, { mode: defaults.mode })
+    )
 );

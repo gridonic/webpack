@@ -79,6 +79,7 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 | Preset | Description |
 | -------- | -------- |
 | [`raw`] | Use this in case you need to import files as strings. |
+| [`vue`] | Use this if you are going to develop a Vue application. |
 
 
 ### How to use them?
@@ -91,7 +92,7 @@ module.exports = env => require('@gridonic/webpack')[
     env === 'production' ? 'production' : 'development'
 ]({
     presets: [
-        raw({ test: /\.csv$/})
+        raw({ test: /\.csv$/ })
     ]
 });
 ```
@@ -107,3 +108,4 @@ console.log(TopTenCommits);
 
 
 [`raw`]: ./src/presets/raw.js
+[`vue`]: ./src/presets/vue.js

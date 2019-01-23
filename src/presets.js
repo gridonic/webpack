@@ -4,6 +4,7 @@ const image = require('./presets/image');
 const js = require('./presets/js');
 const raw = require('./presets/raw');
 const sass = require('./presets/sass');
+const vue = require('./presets/vue');
 
 module.exports = {
     common,
@@ -11,5 +12,6 @@ module.exports = {
     image,
     js,
     raw,
-    sass
+    sass,
+    vue
 };
