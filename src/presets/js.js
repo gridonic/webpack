@@ -1,35 +1,25 @@
 const delve = require('dlv');
+const merge = require('webpack-merge');
+
+const eslint = require('./eslint');
 
 const defaults = {
-
-    // @see https://eslint.org/docs/developer-guide/nodejs-api#cliengine
-    eslint: {
-        fix: true
-    }
+    test: /\.js$/,
 };
 
-module.exports = (options = {}) => {
-    const result = {
-        module: {
-            rules: [{
-                test: /\.m?js$/,
-                exclude: /node_modules/,
+module.exports = (options = {}) => merge({
+    module: {
+        rules: [{
+            test: delve(options, 'test', defaults.test),
+            exclude: /node_modules/,
 
-                // @see https://github.com/babel/babel-loader
-                use: ['babel-loader']
-            }]
-        }
-    };
-
-    // Enable linting in production
-    if (delve(options, 'mode') === 'production') {
-        result.module.rules[0].use.push({
-            loader: 'eslint-loader',
-            options: {
-                fix: delve(options, 'eslint.fix', defaults.eslint.fix)
-            }
-        });
+            // @see https://github.com/babel/babel-loader
+            use: 'babel-loader'
+        }]
     }
-
-    return result;
-};
+}, eslint(
+    merge({
+        mode: options.mode,
+        test: delve(options, 'test', defaults.test)
+    }, options.eslint)
+));

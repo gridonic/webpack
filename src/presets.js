@@ -1,5 +1,6 @@
 const common = require('./presets/common');
 const css = require('./presets/css');
+const eslint = require('./presets/eslint');
 const image = require('./presets/image');
 const js = require('./presets/js');
 const raw = require('./presets/raw');
@@ -9,6 +10,7 @@ const vue = require('./presets/vue');
 module.exports = {
     common,
     css,
+    eslint,
     image,
     js,
     raw,

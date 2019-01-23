@@ -1,43 +1,35 @@
 const delve = require('dlv');
+const merge = require('webpack-merge');
 
 // @see https://vue-loader.vuejs.org/
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
+const eslint = require('./eslint');
+
 const defaults = {
-    test: /\.vue$/,
-
-    // @see https://eslint.org/docs/developer-guide/nodejs-api#cliengine
-    eslint: {
-        fix: true
-    }
+    test: /\.vue$/
 };
 
-module.exports = (options = {}) => {
-    const result = {
-        module: {
-            rules: [{
-                test: delve(options, 'test', defaults.test),
+module.exports = (options = {}) => merge({
+    module: {
+        rules: [{
+            test: delve(options, 'test', defaults.test),
 
-                // @see https://github.com/vuejs/vue-loader
-                use: ['vue-loader']
-            }]
-        },
-        plugins: [
-            new VueLoaderPlugin({
-                productionMode: options.mode === 'production'
-            })
-        ]
-    };
+            // @see https://github.com/vuejs/vue-loader
+            use: 'vue-loader'
+        }]
+    },
+    plugins: [
+        new VueLoaderPlugin({
+            productionMode: options.mode === 'production'
+        })
+    ]
+}, eslint(
 
-    // Enable linting in production
-    if (delve(options, 'mode') === 'production') {
-        result.module.rules[0].use.push({
-            loader: 'eslint-loader',
-            options: {
-                fix: delve(options, 'eslint.fix', defaults.eslint.fix)
-            }
-        });
-    }
-
-    return result;
-};
+    // @todo Why is vue-loader not picking this from our js preset?
+    // @see https://vue-loader.vuejs.org/guide/#manual-configuration
+    merge({
+        mode: options.mode,
+        test: delve(options, 'test', defaults.test)
+    }, options.eslint)
+));
