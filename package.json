@@ -1,6 +1,6 @@
 {
   "name": "@gridonic/webpack",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Our webpack configuration.",
   "main": "src/index.js",
   "scripts": {},
