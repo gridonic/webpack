@@ -49,7 +49,7 @@ If you need to customize the webpack configuration we recommend setting up 2 (**
 
 const { development } = require('@gridonic/webpack');
 
-module.exports = development();
+module.exports = development(/* { options } */);
 ```
 
 ```js
@@ -57,7 +57,7 @@ module.exports = development();
 
 const { production } = require('@gridonic/webpack');
 
-module.exports = production();
+module.exports = production(/* { options } */);
 ```
 
 Almost done. Just add these two scripts to your `package.json`…
@@ -141,13 +141,13 @@ module.exports = (env) => {
 ```js
 // babel.config.js
 
-module.exports = require('@gridonic/webpack').configs.vue.babel();
+module.exports = require('@gridonic/webpack').configs.vue.babel(/* { options } */);
 ```
 
 ```js
 // .eslintrc.js
 
-module.exports = require('@gridonic/webpack').configs.vue.eslint();
+module.exports = require('@gridonic/webpack').configs.vue.eslint(/* { options } */);
 ```
 
 ```js
