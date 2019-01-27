@@ -8,6 +8,7 @@ const css = require('./css');
 const sass = require('./sass');
 const js = require('./js');
 const image = require('./image');
+const fonts = require('./fonts');
 
 module.exports = (options = {}) => merge({
 
@@ -42,4 +43,5 @@ module.exports = (options = {}) => merge({
     sass(merge({ mode: options.mode }, options.sass)),
     js(merge({ mode: options.mode }, options.js)),
     image(merge({ mode: options.mode }, options.image)),
+    fonts(merge({ mode: options.mode }, options.fonts)),
 );
