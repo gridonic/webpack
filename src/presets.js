@@ -8,6 +8,7 @@ const js = require('./presets/js');
 const raw = require('./presets/raw');
 const sass = require('./presets/sass');
 const vue = require('./presets/vue');
+const yaml = require('./presets/yaml');
 
 module.exports = {
     common,
@@ -19,5 +20,6 @@ module.exports = {
     js,
     raw,
     sass,
-    vue
+    vue,
+    yaml
 };
