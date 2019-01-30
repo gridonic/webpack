@@ -7,7 +7,7 @@ const defaults = {
 module.exports = (options = {}) => ({
     module: {
         rules: [{
-            test: delve(options, test, defaults.test),
+            test: delve(options, 'test', defaults.test),
 
             // @see https://github.com/okonet/yaml-loader
             use: 'yaml-loader'
