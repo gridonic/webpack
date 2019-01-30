@@ -5,6 +5,7 @@ const merge = require('webpack-merge');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const eslint = require('./eslint');
+const yaml = require('./yaml');
 
 const defaults = {
     test: /\.vue$/
@@ -17,6 +18,10 @@ module.exports = (options = {}) => merge({
 
             // @see https://github.com/vuejs/vue-loader
             use: 'vue-loader'
+        }, {
+            resourceQuery: /blockType=i18n/,
+            type: 'javascript/auto',
+            loader: '@kazupon/vue-i18n-loader'
         }]
     },
     plugins: [
@@ -32,4 +37,4 @@ module.exports = (options = {}) => merge({
         mode: options.mode,
         test: delve(options, 'test', defaults.test)
     }, options.eslint)
-));
+), yaml());
