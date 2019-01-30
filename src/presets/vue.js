@@ -19,9 +19,14 @@ module.exports = (options = {}) => merge({
             // @see https://github.com/vuejs/vue-loader
             use: 'vue-loader'
         }, {
+
+            // @see https://kazupon.github.io/vue-i18n/guide/sfc.html
             resourceQuery: /blockType=i18n/,
             type: 'javascript/auto',
-            loader: '@kazupon/vue-i18n-loader'
+            use: [
+                '@kazupon/vue-i18n-loader',
+                'yaml-loader'
+            ]
         }]
     },
     plugins: [
