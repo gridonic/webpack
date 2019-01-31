@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "Our webpack configuration.",
   "main": "src/index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "jest"
+  },
   "author": "Gridonic <hello@gridonic.ch>",
   "license": "MIT",
   "dependencies": {
@@ -41,19 +43,23 @@
     "postcss-loader": "^3.0.0",
     "postcss-replace": "^1.0.3",
     "raw-loader": "^1.0.0",
+    "read-pkg": "^4.0.1",
     "sass-loader": "^7.1.0",
+    "shelljs": "^0.8.3",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
-    "vue": "^2.5.22",
     "vue-loader": "^15.5.1",
-    "vue-template-compiler": "^2.5.22",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.2.1",
+    "write-pkg": "^3.2.0",
     "yaml-loader": "^0.5.0"
   },
   "engines": {
     "node": ">=10"
+  },
+  "devDependencies": {
+    "jest": "^24.0.0"
   }
 }
