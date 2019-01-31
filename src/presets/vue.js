@@ -5,11 +5,23 @@ const merge = require('webpack-merge');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const eslint = require('./eslint');
-const yaml = require('./yaml');
+const localRequire = require('../helpers/localRequire');
 
 const defaults = {
     test: /\.vue$/
 };
+
+// Require packages that are used by this preset
+localRequire({
+    'vue': '^2.5.22',
+    'vue-i18n': '^8.8.0',
+    'vue-router': '^3.0.2',
+    'vuex': '^3.1.0'
+});
+
+localRequire({
+    'vue-template-compiler': '^2.5.22'
+}, { dev: true });
 
 module.exports = (options = {}) => merge({
     module: {
@@ -42,4 +54,4 @@ module.exports = (options = {}) => merge({
         mode: options.mode,
         test: delve(options, 'test', defaults.test)
     }, options.eslint)
-), yaml());
+));
