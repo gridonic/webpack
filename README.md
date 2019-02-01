@@ -102,7 +102,7 @@ module.exports = env => require('@gridonic/webpack')[
     env === 'production' ? 'production' : 'development'
 ]({
     presets: [
-        raw({ test: /\.csv$/ })
+        ['raw', { test: /\.csv$/ }]
     ]
 });
 ```
