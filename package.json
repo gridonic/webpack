@@ -52,6 +52,7 @@
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.2.1",
+    "write-file-webpack-plugin": "^4.5.0",
     "write-pkg": "^3.2.0",
     "yaml-loader": "^0.5.0"
   },
