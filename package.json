@@ -21,7 +21,6 @@
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.8",
     "dlv": "^1.1.2",
-    "error-overlay-webpack-plugin": "^0.1.6",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-import-resolver-webpack": "^0.10.1",

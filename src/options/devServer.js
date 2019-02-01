@@ -26,4 +26,7 @@ module.exports = (options = {}) => ({
     // @see https://webpack.js.org/configuration/stats/
     stats: delve(options, 'stats', defaults.stats),
 
+    // @see https://webpack.js.org/configuration/dev-server/#devserver-overlay
+    overlay: true
+
 });
