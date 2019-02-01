@@ -1,5 +1,6 @@
 const delve = require('dlv');
 const merge = require('webpack-merge');
+const importCwd = require('import-cwd');
 
 // @see https://vue-loader.vuejs.org/
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -29,7 +30,12 @@ module.exports = (options = {}) => merge({
             test: delve(options, 'test', defaults.test),
 
             // @see https://github.com/vuejs/vue-loader
-            use: 'vue-loader'
+            use: {
+                loader: 'vue-loader',
+                options: {
+                    compiler: importCwd('vue-template-compiler')
+                }
+            }
         }, {
 
             // @see https://kazupon.github.io/vue-i18n/guide/sfc.html
