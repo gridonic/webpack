@@ -1,7 +1,7 @@
 const delve = require('dlv');
 
 const defaults = {
-    autoprefixer: { },
+    autoprefixer: {},
     replace: {},
     cssnano: {}
 };
