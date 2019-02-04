@@ -49,14 +49,14 @@ Finally you…
 - run `npm run dev` if you want to **develop on your project**, or 
 - run `npm run build` if you want to **ship your code**.
 
-Simple, right? Without any adjustments our pre-configured webpack runs with …
+**Simple, right?** Without any adjustments our pre-configured webpack runs with …
 
 - [ESLint]
 - [Babel]
 - [PostCSS]
 - [Sass]
 - [Imagemin]
-- [Vue.js] (via preset)
+- [Vue.js] (via preset, see examples)
 
 <br>
 
@@ -116,9 +116,9 @@ module.exports = require('@gridonic/webpack').configs.es6.eslint(/* { options } 
 
 <br>
 
-### Examples
+## Examples
 
-#### Importing arbitrary files as strings
+### Importing arbitrary files as strings
 
 Let’s say you need to import `.csv` files for example. In that case you’ll need to add the [`raw`] preset and adjust the `test` RegEx.
 
@@ -144,7 +144,7 @@ console.log(TopTenCommits);
 
 <br>
 
-#### Develop a [Vue.js] application
+### Develop a [Vue.js] application
 
 Setting up the build environment for a [Vue.js] application is straight forward.
 
