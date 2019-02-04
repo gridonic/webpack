@@ -10,8 +10,8 @@ Looking for [unreleased] changes?
 
 <br>
 
-## 0.2.0
-###### 2019-02-01
+## [0.2.0]
+###### 2019-02-04
 
 ###### Fixed
 
@@ -27,6 +27,7 @@ Looking for [unreleased] changes?
 - Vue: Add `vue-i18n-loader`
 - Install `vue` preset dependencies automatically
 - Allow webpack dev-server to write to disk 🎉
+- Add `gridonic-webpack` CLI
 
 ###### Changed
 
