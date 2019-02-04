@@ -6,6 +6,9 @@
   "scripts": {
     "test": "jest"
   },
+  "bin": {
+    "gridonic-webpack": "./bin/cli.js"
+  },
   "author": "Gridonic <hello@gridonic.ch>",
   "license": "MIT",
   "dependencies": {
@@ -37,6 +40,8 @@
     "imagemin-pngquant": "^7.0.0",
     "imagemin-svgo": "^7.0.0",
     "img-loader": "^3.0.1",
+    "import-cwd": "^2.1.0",
+    "meow": "^5.0.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "postcss-loader": "^3.0.0",
