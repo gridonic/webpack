@@ -1,4 +1,4 @@
-![webpack](media/logo.png)
+![webpack](https://gridonic.github.io/assets/images/logos/webpack.svg)
 
 ## How to use?
 
