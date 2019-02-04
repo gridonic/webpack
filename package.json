@@ -66,5 +66,20 @@
   },
   "devDependencies": {
     "jest": "^24.0.0"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gridonic/webpack.git"
+  },
+  "keywords": [
+    "webpack",
+    "pre-configured"
+  ],
+  "bugs": {
+    "url": "https://github.com/gridonic/webpack/issues"
+  },
+  "homepage": "https://github.com/gridonic/webpack#readme"
 }
