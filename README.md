@@ -1,75 +1,55 @@
 ![webpack](https://gridonic.github.io/assets/images/logos/webpack.svg)
 
+Our pre-configured webpack. Nothing more, nothing less.
+<br>
+
 ## How to use?
 
-First of all you’ll need to install our npm package.
+> It’s recommended to use our [@gridonic/generator](https://github.com/gridonic/generator) since it will setup your project accordingly and completely automatically.
+<br>
 
-`npm install --save-dev @gridonic/webpack`
+If you need to set up your project **manually**, those steps will get you up and running:
 
-No matter if you are going to use it out of the box or if you adjust it (heavily), in both cases you…
+1. `npm install --save-dev @gridonic/webpack`  
+    
+    This will install our npm package.
+    
+2. `touch webpack.config.js`
+    
+    This creates a webpack.config.js file and a very simple configuration could look like this:
+    
+    ```js
+    const {
+        development,
+        production
+    } = require('@gridonic/webpack');
+
+    module.exports = (env) => {
+        const config = env === 'production' ? production : development;
+
+        return config({
+            /* webpack options */
+        });
+    };
+    ```
+    
+3. Add npm scripts to your `package.json`.
+
+    ```json
+    {
+      "scripts": {
+        "dev": "gridonic-webpack",
+        "build": "gridonic-webpack --production"
+      }
+    }
+    ``` 
+
+Finally you…
 
 - run `npm run dev` if you want to **develop on your project**, or 
 - run `npm run build` if you want to **ship your code**.
 
 Simple, right? 
-
-<br>
-
-### Out of the box
-
-If you don’t have to tweak or adjust our default configurations this one-liner webpack configuration might just do fine.
-
-```js
-// webpack.config.js
-
-module.exports = env => require('@gridonic/webpack')[
-    env === 'production' ? 'production' : 'development'
-]();
-```
-
-Then you’ll just have to use those two npm scripts in your `package.json`…
-
-```json
-{
-  "scripts": {
-    "dev": "webpack-dev-server",
-    "build": "webpack --env production"
-  }
-}
-``` 
-
-<br>
-
-### More customized
-
-If you need to customize the webpack configuration we recommend setting up 2 (**two**) webpack configuration files. One for **development** and one for **production mode**.
-
-```js
-// webpack.dev.js
-
-const { development } = require('@gridonic/webpack');
-
-module.exports = development(/* { options } */);
-```
-
-```js
-// webpack.prod.js
-
-const { production } = require('@gridonic/webpack');
-
-module.exports = production(/* { options } */);
-```
-
-Almost done. Just add these two scripts to your `package.json`…
-
-```json
-{
-  "scripts": {
-    "dev": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
-  }
-}
-```
 
 <br>
 
@@ -83,9 +63,49 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 
 | Preset | Description |
 | -------- | -------- |
-| [`raw`] | Use this in case you need to import files as strings. |
+| [`file`] | Use this if you need to add files in general (e.g. video in html). |
+| [`raw`] | Use this if you need to import files as strings. |
 | [`vue`] | Use this if you are going to develop a [Vue.js] application. |
 
+
+<br>
+
+## Third party configurations
+
+We also provide default configurations for each preset for common third party tools like ESLint, Babel and PostCSS. For example:
+
+```js
+// postcss.config.js
+
+const pkg = require('./package.json');
+
+module.exports = ({ options }) => require('@gridonic/webpack').configs.postcss({
+    mode: options.mode,
+    replace: {
+        data: pkg
+    }
+});
+```
+
+If you have a “vanilla” JavaScript project, there is/will be a Babel and ESLint configuration for each ECMAScript version within the `configs` key.
+
+Currently supported ECMAScript versions:
+
+- [6]() (e.g. `require('@gridonic/webpack').configs.es6`)
+
+You can apply/extend those configurations like this:
+
+```js
+// babel.config.js
+
+module.exports = require('@gridonic/webpack').configs.es6.babel(/* { options } */);
+```
+
+```js
+// .eslintrc.js
+
+module.exports = require('@gridonic/webpack').configs.es6.eslint(/* { options } */);
+```
 
 <br>
 
@@ -164,6 +184,7 @@ module.exports = ({ options }) => require('@gridonic/webpack').configs.postcss({
 ```
 
 
+[`file`]: ./src/presets/file.js
 [`raw`]: ./src/presets/raw.js
 [`vue`]: ./src/presets/vue.js
 
