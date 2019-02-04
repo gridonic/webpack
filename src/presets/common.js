@@ -40,7 +40,7 @@ module.exports = (options = {}) => {
 
         },
         css(merge({ mode: options.mode }, options.css)),
-        sass(merge({ mode: options.mode }, options.sass)),
+        sass(merge({ mode: options.mode }, options.css, options.sass)),
         js(merge({ mode: options.mode }, options.js)),
         image(merge({ mode: options.mode }, options.image)),
         fonts(merge({ mode: options.mode }, options.fonts)),
