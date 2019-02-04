@@ -10,6 +10,15 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [0.2.1]
+###### 2019-02-04
+
+###### Fixed
+
+- Sass should pass it’s options along to CSS now
+- Vue preset does not install dependencies any longer when it’s not being used
+
+
 ## [0.2.0]
 ###### 2019-02-04
 
@@ -41,5 +50,6 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/0.2.0...HEAD
+[unreleased]: https://github.com/gridonic/webpack/compare/0.2.1...HEAD
+[0.2.1]: https://github.com/gridonic/webpack/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/gridonic/webpack/compare/0.1.0...0.2.0
