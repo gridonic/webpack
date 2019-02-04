@@ -49,7 +49,14 @@ Finally you…
 - run `npm run dev` if you want to **develop on your project**, or 
 - run `npm run build` if you want to **ship your code**.
 
-Simple, right? 
+Simple, right? Without any adjustments our pre-configured webpack runs with …
+
+- [ESLint]
+- [Babel]
+- [PostCSS]
+- [Sass]
+- [Imagemin]
+- [Vue.js] (via preset)
 
 <br>
 
@@ -91,7 +98,7 @@ If you have a “vanilla” JavaScript project, there is/will be a Babel and ESL
 
 Currently supported ECMAScript versions:
 
-- [6]() (e.g. `require('@gridonic/webpack').configs.es6`)
+- [6](https://www.ecma-international.org/ecma-262/6.0/index.html) (e.g. `require('@gridonic/webpack').configs.es6`)
 
 You can apply/extend those configurations like this:
 
@@ -189,3 +196,8 @@ module.exports = ({ options }) => require('@gridonic/webpack').configs.postcss({
 [`vue`]: ./src/presets/vue.js
 
 [Vue.js]: https://vuejs.org/
+[ESLint]: https://eslint.org/
+[Babel]: https://babeljs.io/
+[PostCSS]: https://postcss.org/
+[Sass]: https://sass-lang.com/
+[Imagemin]: https://github.com/imagemin/imagemin
