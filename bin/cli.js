@@ -43,4 +43,4 @@ if (production === true) {
 }
 
 // Run in development mode…
-shell.exec('webpack-dev-server');
+shell.exec('webpack-dev-server --hot --inline');

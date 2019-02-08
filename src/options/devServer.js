@@ -15,11 +15,6 @@ module.exports = (options = {}) => ({
     // @see https://webpack.js.org/configuration/dev-server/#devserver-contentbase
     contentBase: delve(options, 'contentBase', defaults.contentBase),
 
-    // @see https://webpack.js.org/configuration/dev-server/#devserver-hot
-    // @see https://webpack.js.org/concepts/hot-module-replacement/
-    // @see https://webpack.js.org/guides/hot-module-replacement/
-    hot: delve(options, 'hot', defaults.hot),
-
     // @see https://webpack.js.org/configuration/dev-server/#devserver-open
     open: delve(options, 'open', defaults.open),
 
