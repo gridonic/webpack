@@ -1,7 +1,7 @@
 const merge = require('webpack-merge');
 const delve = require('dlv');
 
-const { clean, html, hmr, friendlyErrors, writeFile } = require('../plugins');
+const { clean, html, friendlyErrors, writeFile } = require('../plugins');
 const { entry, output, resolve, stats } = require('../options');
 
 const css = require('./css');
@@ -28,8 +28,7 @@ module.exports = (options = {}) => {
                         root: delve(options, 'context')
                     }, options.clean)
                 ),
-                html(options.html), // @todo How to handleeine multiple html files?
-                hmr(options.hmr)
+                html(options.html) // @todo How to handleeine multiple html files?
             ],
 
             // @see https://webpack.js.org/configuration/output/
