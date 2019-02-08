@@ -1,4 +1,5 @@
 const delve = require('dlv');
+const merge = require('webpack-merge');
 
 const defaults = {
     autoprefixer: {},
@@ -21,5 +22,5 @@ module.exports = (options = {}) => {
         );
     }
 
-    return result;
+    return merge(result, options);
 };

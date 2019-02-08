@@ -1,4 +1,4 @@
-const localRequire = require('../src/helpers/localRequire');
+const localRequire = require('../../src/helpers/localRequire');
 
 // In test mode we do not modify any package.json’s
 const options = {

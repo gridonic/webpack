@@ -1,14 +1,13 @@
+const merge = require('webpack-merge');
 const { babel, eslint } = require('./es6');
 
 module.exports = {
     babel,
-    eslint: (options = {}) => {
-        const result = eslint(options);
+    eslint: (options = {}) => eslint(
 
         // @see https://github.com/vuejs/eslint-plugin-vue
         // @see https://vuejs.github.io/eslint-plugin-vue/rules/
-        result.extends.unshift('plugin:vue/recommended');
+        merge({ extends: ['plugin:vue/recommended'] }, options)
 
-        return result;
-    }
+    )
 };

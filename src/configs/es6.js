@@ -1,4 +1,6 @@
-const babel = (options = {}) => ({
+const merge = require('webpack-merge');
+
+const babel = {
     presets: [
 
         // @see https://babeljs.io/docs/en/babel-preset-env
@@ -27,9 +29,9 @@ const babel = (options = {}) => ({
         // @see https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import
         '@babel/plugin-syntax-dynamic-import'
     ]
-});
+};
 
-const eslint = (options = {}) => ({
+const eslint = {
     extends: [
 
         // @see https://www.npmjs.com/package/eslint-config-airbnb-base
@@ -53,9 +55,9 @@ const eslint = (options = {}) => ({
     settings: {
         'import/resolver': 'webpack'
     }
-});
+};
 
 module.exports = {
-    babel,
-    eslint
+    babel: (options = {}) => merge(babel, options),
+    eslint: (options = {}) => merge(eslint, options)
 };
