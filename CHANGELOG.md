@@ -15,7 +15,7 @@ Looking for [unreleased] changes?
 
 ###### Changed
 
-- HMR is enabled via CLI flag now and not via configuration. See #1 for details.
+- HMR is enabled via CLI flag now and not via configuration. See [#1] for details.
 
 ## [0.2.1]
 ###### 2019-02-04
@@ -61,3 +61,5 @@ First version ready for internal testing.
 [0.2.2]: https://github.com/gridonic/webpack/compare/0.2.1...0.2.2
 [0.2.1]: https://github.com/gridonic/webpack/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/gridonic/webpack/compare/0.1.0...0.2.0
+
+[#1]: https://github.com/gridonic/webpack/pull/1
