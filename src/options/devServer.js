@@ -16,7 +16,10 @@ const defaults = {
     stats,
 
     // @see https://webpack.js.org/configuration/dev-server/#devserver-overlay
-    overlay: true
+    overlay: true,
+
+    // @see https://webpack.js.org/configuration/dev-server/#devserver-host,
+    host: '0.0.0.0'
 };
 
 module.exports = (options = {}) => merge(defaults, options);
