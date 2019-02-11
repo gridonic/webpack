@@ -16,6 +16,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@kazupon/vue-i18n-loader": "^0.3.0",
+    "as-array": "^2.0.0",
     "autoprefixer": "^9.4.5",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
@@ -30,6 +31,7 @@
     "eslint-loader": "^2.1.1",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-vue": "^5.1.0",
+    "except": "^0.1.3",
     "fast-async": "^6.3.8",
     "file-loader": "^3.0.1",
     "friendly-errors-webpack-plugin": "^1.7.0",
@@ -41,6 +43,7 @@
     "imagemin-svgo": "^7.0.0",
     "img-loader": "^3.0.1",
     "import-cwd": "^2.1.0",
+    "jsome": "^2.5.0",
     "meow": "^5.0.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
@@ -50,6 +53,7 @@
     "read-pkg": "^4.0.1",
     "sass-loader": "^7.1.0",
     "shelljs": "^0.8.3",
+    "shuffle-array": "^1.0.1",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "vue-loader": "^15.5.1",
@@ -64,11 +68,7 @@
     "node": ">=10"
   },
   "devDependencies": {
-    "as-array": "^2.0.0",
-    "except": "^0.1.3",
-    "jest": "^24.0.0",
-    "jsome": "^2.5.0",
-    "shuffle-array": "^1.0.1"
+    "jest": "^24.0.0"
   },
   "directories": {
     "test": "tests"
