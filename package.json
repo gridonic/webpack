@@ -65,7 +65,9 @@
     "node": ">=10"
   },
   "devDependencies": {
-    "jest": "^24.0.0"
+    "jest": "^24.0.0",
+    "jsome": "^2.5.0",
+    "shuffle-array": "^1.0.1"
   },
   "directories": {
     "test": "tests"

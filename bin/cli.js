@@ -1,22 +1,32 @@
 #!/usr/bin/env node
 
+// @see https://github.com/sindresorhus/meow
 const meow = require('meow');
+
+// @see https://github.com/shelljs/shelljs
 const shell = require('shelljs');
+
+// @see https://github.com/chalk/chalk
 const chalk = require('chalk');
 
-const logo = require('./logo');
-const pkg = require('../package.json');
+// @see https://github.com/sindresorhus/import-cwd
+const importCwd = require('import-cwd');
 
-const cli = meow(`
-${logo}
-${chalk.bold.blue(pkg.name)} ${chalk.gray(`(v${pkg.version})`)}
-	
+// @see https://github.com/Javascipt/Jsome
+const jsome = require('jsome');
 
-	Usage
-	  $ gridonic-webpack
+// Gridonic branding
+const brand = require('./brand');
 
-	Options
-	  --production, -p  Run in production mode
+const cli = meow(chalk`
+${brand}
+
+	{blue Usage}
+	  {gray $} gridonic-webpack
+
+	{blue Options}
+	  --production, -p      {gray Run in production mode}
+	  --dump, -d            {gray Dumps the configuration} 
 `, {
     description: false,
     flags: {
@@ -24,17 +34,30 @@ ${chalk.bold.blue(pkg.name)} ${chalk.gray(`(v${pkg.version})`)}
             type: 'boolean',
             alias: 'p',
             default: false
+        },
+        dump: {
+            type: 'boolean',
+            alias: 'd',
+            default: false
         }
     }
 });
 
-const { production } = cli.flags;
+const { production, dump } = cli.flags;
+const env = production === true ? 'production' : 'development';
+
+// Print logo and version
+console.log(brand);
+
+// Just dump the configuration and leave
+if (dump === true) {
+    return jsome(
+        importCwd('./webpack.config.js')(env)
+    );
+}
 
 console.log(`
-${logo}
-${chalk.bold.blue(pkg.name)} ${chalk.gray(`(v${pkg.version})`)}
-
-Running in ${chalk.green(production === true ? 'production' : 'development')} mode…
+Running in ${chalk.green(env)} mode…
 `);
 
 // Run in production mode
