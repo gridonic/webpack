@@ -1,13 +1,13 @@
 const merge = require('webpack-merge');
 
-const output = require('./output');
 const stats = require('./stats');
+const context = require('./context');
 
 // @see https://webpack.js.org/configuration/dev-server/
 const defaults = {
 
     // @see https://webpack.js.org/configuration/dev-server/#devserver-contentbase
-    contentBase: output().path,
+    contentBase: context(),
 
     // @see https://webpack.js.org/configuration/dev-server/#devserver-open
     open: true,
