@@ -24,7 +24,7 @@ Looking for [unreleased] changes?
 ###### Changed
 
 - Drop [write-file-webpack-plugin](https://github.com/gajus/write-file-webpack-plugin) since [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware#writetodisk) supports this already
-- ESLint: Allow overriding exclude and turn off [autofix](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)
+- ESLint: Allow overriding `exclude` and turn off [autofix](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)
 - DevServer: Should be accessible externally by default
 - DevServer: `contentBase` is current working directory now by default
 
