@@ -60,6 +60,12 @@ Finally you…
 
 <br>
 
+## CLI
+
+This package also comes with a CLI. Run `npx gridonic-webpack --help` for more information.
+
+<br>
+
 ## Presets
 
 Our webpack setup should be flexible and simple to use at the same time. That’s why we have configurable presets for tasks that come up frequently but are not included in the default core configuration.
