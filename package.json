@@ -64,6 +64,8 @@
     "node": ">=10"
   },
   "devDependencies": {
+    "as-array": "^2.0.0",
+    "except": "^0.1.3",
     "jest": "^24.0.0",
     "jsome": "^2.5.0",
     "shuffle-array": "^1.0.1"

@@ -1,4 +1,4 @@
-const delve = require('dlv');
+const merge = require('webpack-merge');
 
 const output = require('../options/output');
 const context = require('../options/context');
@@ -12,9 +12,4 @@ const defaults = {
     verbose: false
 };
 
-module.exports = (options = {}) => new CleanWebpackPlugin(
-    delve(options, 'path', defaults.path), {
-        root: delve(options, 'root', defaults.root),
-        verbose: delve(options, 'root', defaults.verbose)
-    }
-);
+module.exports = ({ path, ...rest } = {}) => new CleanWebpackPlugin(path, merge(defaults, rest));

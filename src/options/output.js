@@ -1,20 +1,16 @@
 const path = require('path');
-const delve = require('dlv');
+const merge = require('webpack-merge');
 
 const context = require('./context');
 
+// @see https://webpack.js.org/configuration/output/
 const defaults = {
+
+    // @see https://webpack.js.org/configuration/output/#output-path
     path: path.join(context(), 'public'),
+
+    // @see https://webpack.js.org/configuration/output/#output-filename
     filename: '[name].js'
 };
 
-// @see https://webpack.js.org/configuration/output/
-module.exports = (options = {}) => ({
-
-    // @see https://webpack.js.org/configuration/output/#output-path
-    path: delve(options, 'path', defaults.path),
-
-    // @see https://webpack.js.org/configuration/output/#output-filename
-    filename: delve(options, 'filename', defaults.filename)
-
-});
+module.exports = (options = {}) => merge(defaults, options);

@@ -1,54 +1,64 @@
 const merge = require('webpack-merge');
 const delve = require('dlv');
+const except = require('except');
+const asArray = require('as-array');
 
-const { clean, html, friendlyErrors, writeFile } = require('../plugins');
+const { clean, html, friendlyErrors } = require('../plugins');
 const { entry, output, resolve, stats } = require('../options');
 
-const css = require('./css');
-const sass = require('./sass');
-const js = require('./js');
-const image = require('./image');
-const fonts = require('./fonts');
+module.exports = (options = {}) => merge({
 
-module.exports = (options = {}) => {
-    const result = merge({
+        // @see https://webpack.js.org/configuration/entry-context/
+        entry: entry(delve(options, 'entry')),
 
-            // @see https://webpack.js.org/configuration/entry-context/
-            entry: entry(options.entry),
+        // @see https://webpack.js.org/configuration/resolve/
+        resolve: resolve(delve(options, 'resolve')),
 
-            // @see https://webpack.js.org/configuration/resolve/
-            resolve: resolve(options.resolve),
+        // @see https://webpack.js.org/configuration/plugins/
+        plugins: [
+            friendlyErrors(),
+            clean(
+                merge({
+                    // Provide
+                    path: delve(options, 'output.path'),
+                    root: delve(options, 'context')
+                }, delve(options, 'clean'))
+            ),
+            ...asArray(delve(options, 'html')).map(html)
+        ],
 
-            // @see https://webpack.js.org/configuration/plugins/
-            plugins: [
-                friendlyErrors(),
-                clean(
-                    merge({
-                        path: delve(options, 'output.path'),
-                        root: delve(options, 'context')
-                    }, options.clean)
-                ),
-                html(options.html) // @todo How to handleeine multiple html files?
-            ],
+        // @see https://webpack.js.org/configuration/output/
+        output: output(delve(options, 'output')),
 
-            // @see https://webpack.js.org/configuration/output/
-            output: output(options.output),
+        // @see https://webpack.js.org/configuration/stats/
+        stats
 
-            // @see https://webpack.js.org/configuration/stats/
-            stats
+    },
 
-        },
-        css(merge({ mode: options.mode }, options.css)),
-        sass(merge({ mode: options.mode }, options.css, options.sass)),
-        js(merge({ mode: options.mode }, options.js)),
-        image(merge({ mode: options.mode }, options.image)),
-        fonts(merge({ mode: options.mode }, options.fonts)),
-    );
+    // Apply common presets
+    require('./css')(merge({ mode: options.mode }, options.css)),
+    require('./sass')(merge({ mode: options.mode }, options.css, options.sass)),
+    require('./js')(merge({ mode: options.mode }, options.js)),
+    require('./image')(merge({ mode: options.mode }, options.image)),
+    require('./fonts')(merge({ mode: options.mode }, options.fonts)),
 
-    // @see https://github.com/webpack/webpack-dev-middleware/issues/239
-    if (delve(options, 'devServer.writeToDisk', false) === true) {
-        result.plugins.push(writeFile());
-    }
+    // Finally we are going to apply all remaining options. Therefore we are
+    // going to remove all option keys that either have been processed already
+    // or are custom keys that webpack would not understand.
+    except(
+        options,
+        'entry',
+        'resolve',
+        'output',
+        'context',
 
-    return result;
-};
+        // Custom options…
+        'clean',
+        'html',
+        'css',
+        'sass',
+        'js',
+        'image',
+        'fonts'
+    )
+);
