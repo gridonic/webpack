@@ -10,12 +10,31 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [0.3.0]
+###### 2019-02-11
+
+###### Fixed
+
+- Do not ignore options that are not preconfigured
+
+###### Added
+
+- CLI: Add `--dump` flag
+
+###### Changed
+
+- Drop [write-file-webpack-plugin](https://github.com/gajus/write-file-webpack-plugin) since [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware#writetodisk) supports this already
+- ESLint: Allow overriding exclude and turn off [autofix](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)
+- DevServer: Should be accessible externally by default
+- DevServer: `contentBase` is current working directory now by default
+
 ## [0.2.2]
 ###### 2019-02-08
 
 ###### Changed
 
 - HMR is enabled via CLI flag now and not via configuration. See [#1] for details.
+
 
 ## [0.2.1]
 ###### 2019-02-04
@@ -57,7 +76,8 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/gridonic/webpack/compare/0.2.2...HEAD
+[unreleased]: https://github.com/gridonic/webpack/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/gridonic/webpack/compare/0.2.2...0.3.0
 [0.2.2]: https://github.com/gridonic/webpack/compare/0.2.1...0.2.2
 [0.2.1]: https://github.com/gridonic/webpack/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/gridonic/webpack/compare/0.1.0...0.2.0
