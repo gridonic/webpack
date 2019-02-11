@@ -2,14 +2,15 @@ const delve = require('dlv');
 
 // @see https://eslint.org/docs/developer-guide/nodejs-api#cliengine
 const defaults = {
-    fix: true
+    exclude: /node_modules/,
+    fix: false
 };
 
 module.exports = (options = {}) => ({
     module: {
         rules: [{
             test: delve(options, 'test'),
-            exclude: /node_modules/,
+            exclude: delve(options, 'exclude', defaults.exclude),
             enforce: 'pre',
 
             // @see https://github.com/webpack-contrib/eslint-loader
