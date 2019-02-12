@@ -15,6 +15,7 @@ const randomColor = () => shuffle.pick([
 // @see https://www.ascii-art-generator.org/
 // @see https://www.text-image.com/convert/ascii.html
 module.exports = chalk`{gray
+
           '/.
         '/dMNo.
       '/dMNymMNo.
@@ -30,4 +31,5 @@ sMm-    '/dMMN:    'yMd.
       '/dMNsdMNs.         {white ${description}}
      /dMNs. '/dMNs'
      :hs.     '/do'
+
 }`;

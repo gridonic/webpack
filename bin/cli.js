@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+const path = require('path');
+const process = require('process');
+
 // @see https://github.com/sindresorhus/meow
 const meow = require('meow');
 
@@ -12,15 +15,14 @@ const chalk = require('chalk');
 // @see https://github.com/sindresorhus/import-cwd
 const importCwd = require('import-cwd');
 
-// @see https://github.com/Javascipt/Jsome
-const jsome = require('jsome');
+// @see https://github.com/sapegin/q-i
+const qi  = require('q-i');
 
-// Gridonic branding
 const brand = require('./brand');
+const { log, info } = require('./log');
 
 const cli = meow(chalk`
 ${brand}
-
 	{blue Usage}
 	  {gray $} gridonic-webpack
 
@@ -47,18 +49,20 @@ const { production, dump } = cli.flags;
 const env = production === true ? 'production' : 'development';
 
 // Print logo and version
-console.log(brand);
+log(brand);
 
 // Just dump the configuration and leave
 if (dump === true) {
-    return jsome(
-        importCwd('./webpack.config.js')(env)
-    );
+    const configFile = './webpack.config.js';
+    const configPath = path.join(process.cwd(), configFile);
+
+    info(chalk`Dumping {green ${configPath}}…`, { newline: [0, 2] });
+
+    return qi.print(importCwd(configFile)(env));
 }
 
-console.log(`
-Running in ${chalk.green(env)} mode…
-`);
+// Tell which environment we are running on
+info(chalk`Running in {green ${env}} mode…`, { newline: [0, 2] });
 
 // Run in production mode
 if (production === true) {
@@ -66,4 +70,4 @@ if (production === true) {
 }
 
 // Run in development mode…
-shell.exec('webpack-dev-server --hot --inline');
+shell.exec('webpack-dev-server --hot --inline --env development');
