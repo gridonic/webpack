@@ -27,6 +27,9 @@ module.exports = (options = {}) => {
     }, { dev: true });
 
     return merge({
+        resolve: {
+            extensions: ['.vue']
+        },
         module: {
             rules: [{
                 test: delve(options, 'test', defaults.test),
