@@ -19,18 +19,13 @@ If you need to set up your project **manually**, those steps will get you up and
     This creates a webpack.config.js file and a very simple configuration could look like this:
     
     ```js
-    const {
-        development,
-        production
-    } = require('@gridonic/webpack');
-
-    module.exports = (env) => {
-        const config = env === 'production' ? production : development;
-
-        return config({
-            /* webpack options */
-        });
-    };
+    const { extendConfig } = require('@gridonic/webpack');
+    
+    module.exports = extendConfig()
+        .forAll({ /** override webpack options for all environments */ })
+        .forDevelopment({ /** override webpack options for development */ })
+        .forProduction({ /** override webpack options for production */ })
+        .toConfigurator();
     ```
     
 3. Add npm scripts to your `package.json`.
@@ -131,13 +126,15 @@ Let’s say you need to import `.csv` files for example. In that case you’ll n
 ```js
 // webpack.config.js
 
-module.exports = env => require('@gridonic/webpack')[
-    env === 'production' ? 'production' : 'development'
-]({
-    presets: [
-        ['raw', { test: /\.csv$/ }]
-    ]
-});
+const { extendConfig } = require('@gridonic/webpack');
+
+module.exports = extendConfig()
+    .forAll({
+        presets: [
+             ['raw', { test: /\.csv$/ }]
+        ]
+    })
+    .toConfigurator();
 ```
 
 That’s it. You now can import your `.csv` files as strings.
@@ -157,18 +154,13 @@ Setting up the build environment for a [Vue.js] application is straight forward.
 ```js
 // webpack.config.js
 
-const {
-    development,
-    production
-} = require('@gridonic/webpack');
+const { extendConfig } = require('@gridonic/webpack');
 
-module.exports = (env) => {
-    const config = env === 'production' ? production : development;
-
-    return config({
+module.exports = extendConfig()
+    .forAll({
         presets: ['vue']
-    });
-};
+    })
+    .toConfigurator();
 ```
 
 ```js
