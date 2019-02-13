@@ -11,9 +11,14 @@ const extendConfig = (extendedConfig) => {
 
 class ConfigExtender {
     constructor(extendedConfig) {
-        this.overrides = {
-            default: extendedConfig
-        };
+        this.overrides = {};
+        return this.forAll(extendedConfig);
+    }
+
+    forAll(extendedConfig) {
+        this.overrides.default = extendedConfig;
+
+        return this;
     }
 
     forDevelopment(extendedConfig) {
@@ -57,6 +62,4 @@ class ConfigExtender {
     }
 }
 
-module.exports = {
-    extendConfig
-};
+module.exports = extendConfig;

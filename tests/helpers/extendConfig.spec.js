@@ -1,4 +1,4 @@
-const {extendConfig} = require('../../src/helpers/extendConfig');
+const extendConfig = require('../../src/helpers/extendConfig');
 const configureDevelopment = require('../../src/modes/development');
 const configureProduction = require('../../src/modes/production');
 
@@ -10,6 +10,7 @@ describe('toConfig used from extendConfig', () => {
         expect(toString((extendConfig().toConfig(DEVELOPMENT))))
             .toEqual(toString(configureDevelopment()));
     });
+
     it('should return default production config when nothing passed', () => {
         expect(toString(extendConfig().toConfig(PRODUCTION)))
             .toEqual(toString(configureProduction()));
@@ -25,6 +26,19 @@ describe('toConfig used from extendConfig', () => {
         expect(extender.toConfig(PRODUCTION).entry.app)
             .toEqual(expectedEntryApp);
     });
+
+    it('should also return general overrides for both environments with forAll', () => {
+        const expectedEntryApp = 'myVeryOwnIndexFile.js';
+
+        const extender = extendConfig()
+            .forAll(entryWithApp(expectedEntryApp));
+
+        expect(extender.toConfig(DEVELOPMENT).entry.app)
+            .toEqual(expectedEntryApp);
+
+        expect(extender.toConfig(PRODUCTION).entry.app)
+            .toEqual(expectedEntryApp);
+    })
 
     it('should return development override in development but not in production config', () => {
         const defaultEntryApp = './src/index.js';
