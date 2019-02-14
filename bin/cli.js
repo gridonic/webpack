@@ -66,8 +66,8 @@ info(chalk`Running in {green ${env}} mode…`, { newline: [0, 2] });
 
 // Run in production mode
 if (production === true) {
-    return shell.exec('webpack --env production');
+    return shell.exec('webpack --env production --colors');
 }
 
 // Run in development mode…
-shell.exec('webpack-dev-server --hot --inline --env development');
+shell.exec('webpack-dev-server --hot --inline --env development --colors');
