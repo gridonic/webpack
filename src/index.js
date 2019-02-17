@@ -6,6 +6,7 @@ const configs = require('./configs');
 const options = require('./options');
 const plugins = require('./plugins');
 const presets = require('./presets');
+const cli = require('./cli');
 
 module.exports = {
     merge,
@@ -14,5 +15,6 @@ module.exports = {
     configs,
     options,
     plugins,
-    presets
+    presets,
+    cli
 };

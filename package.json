@@ -6,9 +6,6 @@
   "scripts": {
     "test": "jest"
   },
-  "bin": {
-    "gridonic-webpack": "./bin/cli.js"
-  },
   "author": "Gridonic <hello@gridonic.ch>",
   "license": "MIT",
   "dependencies": {
@@ -16,6 +13,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
     "@kazupon/vue-i18n-loader": "^0.3.0",
+    "address": "^1.0.3",
     "as-array": "^2.0.0",
     "autoprefixer": "^9.4.5",
     "babel-eslint": "^10.0.1",
@@ -46,6 +44,7 @@
     "meow": "^5.0.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
+    "portfinder": "^1.0.20",
     "postcss-loader": "^3.0.0",
     "postcss-replace": "^1.0.3",
     "q-i": "^2.0.1",
