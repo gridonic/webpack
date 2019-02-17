@@ -7,7 +7,7 @@
 
 ## How to use?
 
-> It’s recommended to use our [@gridonic/cli](https://github.com/gridonic/cli) since it will setup your project accordingly and completely automatically.
+> It’s recommended to use our [@gridonic/cli] since it will setup your project accordingly and completely automatically.
 <br>
 
 If you need to set up your project **manually**, those steps will get you up and running:
@@ -40,8 +40,8 @@ If you need to set up your project **manually**, those steps will get you up and
     ```json
     {
       "scripts": {
-        "dev": "gridonic-webpack",
-        "build": "gridonic-webpack --production"
+        "dev": "gridonic dev",
+        "build": "gridonic build"
       }
     }
     ``` 
@@ -64,7 +64,7 @@ Finally you…
 
 ## CLI
 
-This package also comes with a CLI. Run `npx gridonic-webpack --help` for more information.
+This package provides commands for our [@gridonic/cli].
 
 <br>
 
@@ -218,3 +218,4 @@ module.exports = ({ options }) => require('@gridonic/webpack').configs.postcss({
 [PostCSS]: https://postcss.org/
 [Sass]: https://sass-lang.com/
 [Imagemin]: https://github.com/imagemin/imagemin
+[@gridonic/cli]: https://github.com/gridonic/cli
