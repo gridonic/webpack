@@ -1,13 +1,13 @@
 <p align="center">
-  <img width="240" src="https://gridonic.github.io/assets/images/logos/webpack.svg"><br>
-  Our pre-configured webpack. Nothing more, nothing less.
+  <img width="60%" src="https://gridonic.github.io/assets/images/logos/webpack.svg"><br>
+  Our <strong>pre-configured</strong> webpack. Nothing more, nothing less.
 </p>
 
 <br>
 
 ## How to use?
 
-> It’s recommended to use our [@gridonic/generator](https://github.com/gridonic/generator) since it will setup your project accordingly and completely automatically.
+> It’s recommended to use our [@gridonic/cli](https://github.com/gridonic/cli) since it will setup your project accordingly and completely automatically.
 <br>
 
 If you need to set up your project **manually**, those steps will get you up and running:
