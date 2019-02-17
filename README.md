@@ -1,6 +1,8 @@
-![webpack](https://gridonic.github.io/assets/images/logos/webpack.svg)
+<p align="center">
+  <img width="240" src="https://gridonic.github.io/assets/images/logos/webpack.svg"><br>
+  Our pre-configured webpack. Nothing more, nothing less.
+</p>
 
-Our pre-configured webpack. Nothing more, nothing less.
 <br>
 
 ## How to use?
