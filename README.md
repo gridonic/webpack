@@ -35,7 +35,7 @@ If you need to set up your project **manually**, those steps will get you up and
     };
     ```
     
-3. Add npm scripts to your `package.json`.
+3. Add npm scripts to your `package.json`. This is **optional** if you have our CLI installed **globally**.
 
     ```json
     {
@@ -64,7 +64,7 @@ Finally you…
 
 ## CLI
 
-This package provides commands for our [@gridonic/cli].
+This package provides commands and flags for our [@gridonic/cli].
 
 <br>
 
@@ -82,47 +82,6 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 | [`raw`] | Use this if you need to import files as strings. |
 | [`vue`] | Use this if you are going to develop a [Vue.js] application. |
 
-
-<br>
-
-## Third party configurations
-
-We also provide default configurations for each preset for common third party tools like ESLint, Babel and PostCSS. For example:
-
-```js
-// postcss.config.js
-
-const pkg = require('./package.json');
-
-module.exports = ({ options }) => require('@gridonic/webpack').configs.postcss({
-    mode: options.mode,
-    replace: {
-        data: pkg
-    }
-});
-```
-
-If you have a “vanilla” JavaScript project, there is/will be a Babel and ESLint configuration for each ECMAScript version within the `configs` key.
-
-Currently supported ECMAScript versions:
-
-- [6](https://www.ecma-international.org/ecma-262/6.0/index.html) (e.g. `require('@gridonic/webpack').configs.es6`)
-
-You can apply/extend those configurations like this:
-
-```js
-// babel.config.js
-
-module.exports = require('@gridonic/webpack').configs.es6.babel(/* { options } */);
-```
-
-```js
-// .eslintrc.js
-
-module.exports = require('@gridonic/webpack').configs.es6.eslint(/* { options } */);
-```
-
-<br>
 
 ## Examples
 
@@ -173,30 +132,7 @@ module.exports = (env) => {
 };
 ```
 
-```js
-// babel.config.js
-
-module.exports = require('@gridonic/webpack').configs.vue.babel(/* { options } */);
-```
-
-```js
-// .eslintrc.js
-
-module.exports = require('@gridonic/webpack').configs.vue.eslint(/* { options } */);
-```
-
-```js
-// postcss.config.js
-
-const pkg = require('./package.json');
-
-module.exports = ({ options }) => require('@gridonic/webpack').configs.postcss({
-    mode: options.mode,
-    replace: {
-        data: pkg
-    }
-});
-```
+Looking for third party configuration files like [Babel], [ESLint] or [PostCSS]? Feel free to use what ever you may like.
 
 <br>
 
