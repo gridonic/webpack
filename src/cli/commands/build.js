@@ -28,7 +28,10 @@ const fn = (args = [], flags = {}) => {
 
     // If webpack configuration is a function, pass flags along
     if (typeof webpackConfig === 'function') {
-        webpackConfig = webpackConfig(flags.env);
+        webpackConfig = webpackConfig({
+            ...flags,
+            mode: 'production'
+        });
     }
 
     // Dump configuration file
