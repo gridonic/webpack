@@ -56,6 +56,6 @@ test('One missing dependency in this repository', async () => {
 
 // Pick a dependency that is defined in the package.json of @gridonic/webpack (in here)
 test('No missing dependency in this repository', async () => {
-    expect(await localRequire({ 'core-js': '^2' }, options))
+    expect(await localRequire({ '@gridonic/log': '^1.0.0' }, options))
         .toEqual({});
 });
