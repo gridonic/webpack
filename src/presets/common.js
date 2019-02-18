@@ -24,7 +24,7 @@ module.exports = (options = {}) => merge({
                     root: delve(options, 'context')
                 }, delve(options, 'clean'))
             ),
-            ...asArray(delve(options, 'html')).map(html)
+            ...asArray(delve(options, 'html', {})).map(html)
         ],
 
         // @see https://webpack.js.org/configuration/output/
