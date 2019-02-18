@@ -1,7 +1,16 @@
+// @see https://github.com/developit/dlv
 const delve = require('dlv');
+
+// @see https://github.com/sindresorhus/read-pkg
 const readPkg = require('read-pkg');
+
+// @see https://github.com/sindresorhus/write-pkg
 const writePkg = require('write-pkg');
+
+// @see https://github.com/survivejs/webpack-merge
 const merge = require('webpack-merge');
+
+// @see https://github.com/shelljs/shelljs
 const shell = require('shelljs');
 
 module.exports = (dependencies, options = {}) => {
