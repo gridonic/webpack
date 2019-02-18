@@ -1,18 +1,20 @@
 const merge = require('webpack-merge');
 
+const cli = require('./cli');
 const development = require('./modes/development');
-const production = require('./modes/production');
+const extendConfig = require('./helpers/extendConfig');
 const options = require('./options');
 const plugins = require('./plugins');
 const presets = require('./presets');
-const cli = require('./cli');
+const production = require('./modes/production');
 
 module.exports = {
-    merge,
+    cli,
     development,
-    production,
+    extendConfig,
+    merge,
     options,
     plugins,
     presets,
-    cli
+    production,
 };
