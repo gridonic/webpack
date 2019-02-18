@@ -48,7 +48,7 @@ module.exports = (dependencies, options = {}) => {
         merge(pkg, { [key]: missingOnes })
     );
 
-    info('Installing missing dependencies…', 1, 1);
+    info(`Installing missing ${key}…`, 1, 1);
 
     // Install them via npm
     shell.exec('npm install');
