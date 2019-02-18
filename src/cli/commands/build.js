@@ -7,9 +7,11 @@ const delve = require('dlv');
 // @see https://github.com/sindresorhus/import-cwd
 const importCwd = require('import-cwd');
 
+// @see https://github.com/gridonic/log
+const { error } = require('@gridonic/log');
+
 const defaults = require('../defaults');
 const dump = require('../flags/dump');
-const { error } = require('../log');
 
 const description = 'Create production build';
 

@@ -12,6 +12,7 @@
     "@babel/core": "^7.2.2",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.2.3",
+    "@gridonic/log": "^1.0.0",
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "address": "^1.0.3",
     "as-array": "^2.0.0",

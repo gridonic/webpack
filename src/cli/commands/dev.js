@@ -16,9 +16,11 @@ const address = require('address');
 // @see https://github.com/indexzero/node-portfinder
 const portfinder = require('portfinder');
 
+// @see https://github.com/gridonic/log
+const { info, error } = require('@gridonic/log');
+
 const defaults = require('../defaults');
 const dump = require('../flags/dump');
-const { info, error } = require('../log');
 
 const description = 'Run development server';
 

@@ -4,7 +4,8 @@ const chalk = require('chalk');
 // @see https://github.com/sapegin/q-i
 const qi  = require('q-i');
 
-const { info, success } = require('../log');
+// @see https://github.com/gridonic/log
+const { info, success } = require('@gridonic/log');
 
 const alias = 'd';
 const type = 'boolean';
