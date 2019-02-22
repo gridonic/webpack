@@ -14,7 +14,12 @@ module.exports = (options = {}) => merge({
             exclude: /node_modules/,
 
             // @see https://github.com/babel/babel-loader
-            use: 'babel-loader'
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    cacheDirectory: true
+                }
+            }
         }]
     }
 }, eslint(
