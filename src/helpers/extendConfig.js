@@ -1,4 +1,8 @@
+// @see https://github.com/survivejs/webpack-merge
 const merge = require('webpack-merge');
+
+// @see https://github.com/developit/dlv
+const delve = require('dlv');
 
 let all = {};
 let development = {};
@@ -34,7 +38,9 @@ module.exports = {
 
         return this;
     },
-    toConfig: ({ mode }) => {
+    toConfig: (options = {}) => {
+        const mode = delve(options, 'mode', 'development');
+
         if (mode === 'production') {
             return require('../modes/production')(
                 merge(all, production, { presets })
