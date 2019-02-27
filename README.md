@@ -7,7 +7,7 @@
 
 ## How to use?
 
-> It’s recommended to use our [@gridonic/cli] since it will setup your project accordingly and completely automatically.
+> It’s **highly** recommended to use our [@gridonic/cli] since it can scaffold your project and works seamlessly with our webpack.
 <br>
 
 If you need to set up your project **manually**, those steps will get you up and running:
@@ -21,18 +21,13 @@ If you need to set up your project **manually**, those steps will get you up and
     This creates a webpack.config.js file and a very simple configuration could look like this:
     
     ```js
-    const {
-        development,
-        production
-    } = require('@gridonic/webpack');
-
-    module.exports = (env) => {
-        const config = env === 'production' ? production : development;
-
-        return config({
-            /* webpack options */
-        });
-    };
+    const { extendConfig } = require('@gridonic/webpack');
+    
+    module.exports = extendConfig
+        .forDevelopment({ /* Options for development only */ })
+        .forProduction({ /* Options for production only */ })
+        .forAll({ /* Options for all environments */ })
+        .toConfig;
     ```
     
 3. Add npm scripts to your `package.json`. This is **optional** if you have our CLI installed **globally**.
@@ -40,8 +35,8 @@ If you need to set up your project **manually**, those steps will get you up and
     ```json
     {
       "scripts": {
-        "dev": "gridonic dev",
-        "build": "gridonic build"
+        "dev": "webpack-dev-server --hot",
+        "build": "webpack --mode=production"
       }
     }
     ``` 
@@ -92,13 +87,11 @@ Let’s say you need to import `.csv` files for example. In that case you’ll n
 ```js
 // webpack.config.js
 
-module.exports = env => require('@gridonic/webpack')[
-    env === 'production' ? 'production' : 'development'
-]({
-    presets: [
-        ['raw', { test: /\.csv$/ }]
-    ]
-});
+const { extendConfig } = require('@gridonic/webpack');
+    
+module.exports = extendConfig
+    .usePreset('raw', { test: /\.csv$/ })
+    .toConfig;
 ```
 
 That’s it. You now can import your `.csv` files as strings.
@@ -113,23 +106,17 @@ console.log(TopTenCommits);
 
 ### Develop a [Vue.js] application
 
-Setting up the build environment for a [Vue.js] application is straight forward.
+Setting up the build environment for a [Vue.js] application is straight forward if you use our [@gridonic/generator] and [@gridonic/cli]. If you want to do it manually you will still have a pain free life. 
 
 ```js
 // webpack.config.js
 
-const {
-    development,
-    production
-} = require('@gridonic/webpack');
+const { extendConfig } = require('@gridonic/webpack');
 
-module.exports = (env) => {
-    const config = env === 'production' ? production : development;
+module.exports = extendConfig
+    .usePreset('vue')
+    .toConfig;
 
-    return config({
-        presets: ['vue']
-    });
-};
 ```
 
 Looking for third party configuration files like [Babel], [ESLint] or [PostCSS]? Feel free to use what ever you may like.
@@ -155,3 +142,4 @@ Looking for third party configuration files like [Babel], [ESLint] or [PostCSS]?
 [Sass]: https://sass-lang.com/
 [Imagemin]: https://github.com/imagemin/imagemin
 [@gridonic/cli]: https://github.com/gridonic/cli
+[@gridonic/generator]: https://github.com/gridonic/generator
