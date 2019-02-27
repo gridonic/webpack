@@ -78,6 +78,8 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 | [`vue`] | Use this if you are going to develop a [Vue.js] application. |
 
 
+<br>
+
 ## Examples
 
 ### Importing arbitrary files as strings
