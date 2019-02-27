@@ -1,6 +1,13 @@
+// @see https://github.com/survivejs/webpack-merge
 const merge = require('webpack-merge');
+
+// @see https://github.com/developit/dlv
 const delve = require('dlv');
+
+// @see https://github.com/martinandert/except
 const except = require('except');
+
+// @see https://github.com/scottcorgan/as-array
 const asArray = require('as-array');
 
 const { clean, html, friendlyErrors } = require('../plugins');
@@ -19,7 +26,6 @@ module.exports = (options = {}) => merge({
             friendlyErrors(),
             clean(
                 merge({
-                    // Provide
                     path: delve(options, 'output.path'),
                     root: delve(options, 'context')
                 }, delve(options, 'clean'))
