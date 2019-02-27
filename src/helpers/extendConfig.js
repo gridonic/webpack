@@ -38,8 +38,14 @@ module.exports = {
 
         return this;
     },
-    toConfig: (options = {}) => {
-        const mode = delve(options, 'mode', 'development');
+    toConfig: (options = {}, ...rest) => {
+        const mode =
+
+            // Mode defined by our CLI
+            delve(options, 'mode') ||
+
+            // Mode defined by webpack CLI
+            delve(rest, '0.mode', 'development');
 
         if (mode === 'production') {
             return require('../modes/production')(
