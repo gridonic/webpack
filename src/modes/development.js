@@ -1,5 +1,10 @@
+// @see https://github.com/developit/dlv
 const delve = require('dlv');
+
+// @see https://github.com/survivejs/webpack-merge
 const merge = require('webpack-merge');
+
+// @see https://github.com/martinandert/except
 const except = require('except');
 
 const { handlePreset } = require('../helpers');
