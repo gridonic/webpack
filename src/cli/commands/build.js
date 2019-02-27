@@ -19,12 +19,7 @@ const fn = (args = [], flags = {}) => {
     const config = delve(flags, 'config', defaults.config);
     const webpack = require('webpack');
 
-    let webpackConfig = importCwd.silent(config);
-
-    // Quit because of configuration file not found
-    if (webpackConfig === null) {
-        return error(`${config} not found in current working directory.`);
-    }
+    let webpackConfig = importCwd(config);
 
     // If webpack configuration is a function, pass flags along
     if (typeof webpackConfig === 'function') {
