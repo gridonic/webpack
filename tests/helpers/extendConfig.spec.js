@@ -36,16 +36,20 @@ test('Changing settings for one mode should apply only for that mode', () => {
 });
 
 test('Applying a preset should work', () => {
-    const preset = ['raw', { test: 'raw-test' }];
+    const preset = {
+        name: 'raw',
+        options: { test: 'raw-test' }
+    };
+
     const config = extendConfig
         .reset()
-        .usePreset(preset)
+        .usePreset(preset.name, preset.options)
         .toConfig;
 
     expect(
         config({ mode: development })
             .module
             .rules
-            .find(({ test }) => test === preset[1].test)
+            .find(({ test }) => test === preset.options.test)
     ).not.toBe(undefined);
 });

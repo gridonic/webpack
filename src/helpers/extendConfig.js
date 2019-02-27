@@ -25,7 +25,7 @@ module.exports = {
 
         return this;
     },
-    usePreset(preset) {
+    usePreset(...preset) {
         presets.push(preset);
 
         return this;
