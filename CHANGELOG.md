@@ -10,6 +10,28 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [0.4.0]
+###### 2019-02-27
+
+###### Fixed
+
+- Vue: Allow importing vue files without `.vue` extension
+- HTML plugin not being loaded without options
+- `mini-css-extract-plugin` ending up in webpack config multiple times
+
+###### Added
+
+- CLI: Remove binary and add commands/flags for [@gridonic/cli] (**BREAKING**)
+- CLI: Tell user when it’s installing dependencies
+- Add `extendConfig` helper
+- Babel: Enable cache, which reduces compilation time by 50%
+
+###### Changed
+
+- CLI: Replace `jsome` with `sapegin/q-i` as output has much more information
+- DevServer: Make it more quiet
+
+
 ## [0.3.0]
 ###### 2019-02-11
 
@@ -27,6 +49,7 @@ Looking for [unreleased] changes?
 - ESLint: Allow overriding `exclude` and turn off [autofix](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems)
 - DevServer: Should be accessible externally by default
 - DevServer: `contentBase` is current working directory now by default
+
 
 ## [0.2.2]
 ###### 2019-02-08
@@ -76,10 +99,13 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/gridonic/webpack/compare/0.3.0...HEAD
+[unreleased]: https://github.com/gridonic/webpack/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/gridonic/webpack/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/gridonic/webpack/compare/0.2.2...0.3.0
 [0.2.2]: https://github.com/gridonic/webpack/compare/0.2.1...0.2.2
 [0.2.1]: https://github.com/gridonic/webpack/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/gridonic/webpack/compare/0.1.0...0.2.0
 
 [#1]: https://github.com/gridonic/webpack/pull/1
+
+[@gridonic/cli]: https://github.com/gridonic/cli
