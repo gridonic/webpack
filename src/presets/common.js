@@ -36,8 +36,7 @@ module.exports = (options = {}) => merge({
     },
 
     // Apply common presets
-    require('./css')(merge({ mode: options.mode }, options.css)),
-    require('./sass')(merge({ mode: options.mode }, options.css, options.sass)),
+    require('./css')({ mode: options.mode, css: options.css, sass: options.sass }),
     require('./js')(merge({ mode: options.mode }, options.js)),
     require('./image')(merge({ mode: options.mode }, options.image)),
     require('./fonts')(merge({ mode: options.mode }, options.fonts)),

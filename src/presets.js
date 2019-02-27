@@ -6,7 +6,6 @@ const fonts = require('./presets/fonts');
 const image = require('./presets/image');
 const js = require('./presets/js');
 const raw = require('./presets/raw');
-const sass = require('./presets/sass');
 const vue = require('./presets/vue');
 const yaml = require('./presets/yaml');
 
@@ -19,7 +18,6 @@ module.exports = {
     image,
     js,
     raw,
-    sass,
     vue,
     yaml
 };
