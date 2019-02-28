@@ -7,8 +7,11 @@
 
 ## How to use?
 
-> It’s **highly** recommended to use our [@gridonic/cli] since it can scaffold your project and works seamlessly with our webpack.
+⚠️ It’s **highly** recommended to use our [@gridonic/cli] since it can scaffold your project and works seamlessly with our webpack.
+
 <br>
+
+### Manual setup
 
 If you need to set up your project **manually**, those steps will get you up and running:
 
