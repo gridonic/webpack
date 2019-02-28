@@ -10,6 +10,15 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [0.4.1]
+###### 2019-02-28
+
+###### Fixed
+
+- Clean: Fixed `path` option not working
+- Loading faulty/missing `webpack.config.js` now returns richer errors
+ 
+
 ## [0.4.0]
 ###### 2019-02-27
 
@@ -99,7 +108,8 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/gridonic/webpack/compare/0.4.0...HEAD
+[unreleased]: https://github.com/gridonic/webpack/compare/0.4.1...HEAD
+[0.4.1]: https://github.com/gridonic/webpack/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/gridonic/webpack/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/gridonic/webpack/compare/0.2.2...0.3.0
 [0.2.2]: https://github.com/gridonic/webpack/compare/0.2.1...0.2.2
