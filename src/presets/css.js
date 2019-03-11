@@ -89,8 +89,8 @@ module.exports = (options = {}) => {
 
     // Create separate CSS files instead of bundling
     // them into the JavaScript files
-    if (extract === true) {
-        result.plugins = [miniCssExtract(options.css)];
+    if (extract !== false) {
+        result.plugins = [miniCssExtract(options.css.extract)];
 
         // Replace style-loader with mini-css-extract loader
         result.module.rules.forEach((rule) => {

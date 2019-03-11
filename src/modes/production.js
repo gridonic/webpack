@@ -16,8 +16,9 @@ const defaults = {
         filename: '[name].[hash].js'
     },
     css: {
-        extract: true,
-        filename: '[name].[hash].css'
+        extract: {
+            filename: '[name].[hash].css'
+        }
     }
 };
 
