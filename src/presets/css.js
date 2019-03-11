@@ -4,6 +4,9 @@ const merge = require('webpack-merge');
 // @see https://github.com/developit/dlv
 const delve = require('dlv');
 
+// @see https://github.com/martinandert/except
+const except = require('except');
+
 const miniCssExtract = require('../plugins/miniCssExtract');
 
 const defaults = {
@@ -18,35 +21,42 @@ const defaults = {
 };
 
 module.exports = (options = {}) => {
+    const isDevelopment = delve(options, 'mode', defaults.mode) === 'development';
+
     const cssRule = ({ importLoaders = 1 } = {}) => ({
         test: delve(options, 'css.test', defaults.css.test),
         use: [
 
             // @see https://github.com/webpack-contrib/style-loader
-            'style-loader',
+            {
+                loader: 'style-loader',
+                options: merge({ sourceMap: isDevelopment }, delve(options, 'style'))
+            },
 
             // @see https://github.com/webpack-contrib/css-loader
             {
                 loader: 'css-loader',
-                options: {
+                options: merge({
 
                     // @see https://github.com/webpack-contrib/css-loader#importloaders
-                    importLoaders
+                    importLoaders,
 
-                }
+                    sourceMap: isDevelopment
+                }, except(delve(options, 'css'), 'test', 'extract'))
             },
 
             // @see https://github.com/postcss/postcss-loader
             {
                 loader: 'postcss-loader',
-                options: {
+                options: merge({
                     config: {
                         ctx: {
                             // @see https://github.com/postcss/postcss-loader/issues/353#issuecomment-386756190
                             mode: delve(options, 'mode', defaults.mode)
                         }
-                    }
-                }
+                    },
+                    sourceMap: isDevelopment
+                }, delve(options, 'postcss'))
             }
         ]
     });
@@ -65,7 +75,9 @@ module.exports = (options = {}) => {
 
                         // @see https://github.com/webpack-contrib/sass-loader
                         loader: 'sass-loader',
-                        options: delve(options, 'sass', defaults.sass)
+                        options: merge({
+                            sourceMap: isDevelopment
+                        }, except(delve(options, 'sass', defaults.sass), 'test'))
 
                     }]
                 })
