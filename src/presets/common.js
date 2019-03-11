@@ -43,7 +43,7 @@ module.exports = (options = {}) => merge({
 
     // Apply common presets
     require('./css')({ mode: options.mode, css: options.css, sass: options.sass }),
-    require('./js')(merge({ mode: options.mode, eslint: options.eslint }, options.js)),
+    require('./js')(merge({ mode: options.mode, eslint: options.eslint, babel: options.babel }, options.js)),
     require('./image')(merge({ mode: options.mode }, options.image)),
     require('./fonts')(merge({ mode: options.mode }, options.fonts)),
 
@@ -65,6 +65,7 @@ module.exports = (options = {}) => merge({
         'js',
         'image',
         'fonts',
-        'eslint'
+        'eslint',
+        'babel'
     )
 );

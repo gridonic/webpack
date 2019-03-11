@@ -5,20 +5,22 @@ const eslint = require('./eslint');
 
 const defaults = {
     test: /\.js$/,
+    exclude: /node_modules/,
+    babel: {
+        cacheDirectory: true
+    }
 };
 
 module.exports = (options = {}) => merge({
     module: {
         rules: [{
             test: delve(options, 'test', defaults.test),
-            exclude: /node_modules/,
+            exclude: delve(options, 'exclude', defaults.exclude),
 
             // @see https://github.com/babel/babel-loader
             use: {
                 loader: 'babel-loader',
-                options: {
-                    cacheDirectory: true
-                }
+                options: merge(defaults.babel, delve(options, 'babel'))
             }
         }]
     }
