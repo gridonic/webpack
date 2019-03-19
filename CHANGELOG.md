@@ -10,6 +10,13 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [0.4.3]
+###### 2019-03-019
+
+###### Added
+
+- Add: New preset `https` for using https with `devServer`  
+
 ## [0.4.2]
 ###### 2019-03-07
 
