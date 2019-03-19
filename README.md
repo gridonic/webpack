@@ -128,6 +128,16 @@ Looking for third party configuration files like [Babel], [ESLint] or [PostCSS]?
 
 <br>
 
+### Use https with Dev Server
+
+Add the `https` preset to your configuration. By default, the config expects a `.ca`, `.crt` and `.key` file in the folder `/usr/local/etc/httpd/ssl/`,
+to match the ssl information you use for your apache server.
+
+If you store your ssl files in another location, you can specify them in your local `.env` file (Or any other .env file that is ignored in git).
+Use the following keys to specify the file locations: `SSL_CA`, `SSL_CERT`, `SSL_KEY`  
+
+<br>
+
 #  
 <p align="center">
   <a href="https://gridonic.ch">gridonic.ch</a> ・
