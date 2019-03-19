@@ -34,7 +34,7 @@
     "portfinder": "^1.0.20",
     "postcss-loader": "^3.0.0",
     "q-i": "^2.0.1",
-    "raw-loader": "^1.0.0",
+    "raw-loader": "^2.0.0",
     "read-pkg": "^4.0.1",
     "sass-loader": "^7.1.0",
     "shelljs": "^0.8.3",
