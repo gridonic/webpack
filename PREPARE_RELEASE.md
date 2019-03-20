@@ -2,9 +2,7 @@ This is a checklist for publishing new releases.
 
 ## Preparation
 
-1. Version number has been updated accordingly. This includes:
-    - Updated `version` in [`package.json`](./package.json)
-    - Ran `npm i` so that the lock file gets updated
+1. Raise your version number with `npm version [major|minor|patch] --no-git-tag-version` **ONLY**.
 2. [`CHANGELOG.md`](./CHANGELOG.md) mirrors **all** changes for the upcoming release. This includes:
     - New changes, new fixes, new additions
     - New version links for headline **and** unreleased link (see bottom of this file)
