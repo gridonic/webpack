@@ -1,20 +1,34 @@
+// @see https://github.com/survivejs/webpack-merge
 const merge = require('webpack-merge');
-const getenv = require('../env/env');
+
+const env = require('../helpers/env');
+
+const defaults = {
+
+    // @see https://webpack.js.org/configuration/dev-server/#devserverhttps
+    // @see https://nodejs.org/api/tls.html
+    https: {
+        ca: env('SSL_CA', '/usr/local/etc/httpd/ssl/ca.pem'),
+        cert: env('SSL_CERT', '/usr/local/etc/httpd/ssl/server.crt'),
+        key: env('SSL_KEY', '/usr/local/etc/httpd/ssl/server.key')
+    },
+
+    // @see https://webpack.js.org/configuration/dev-server/#devserverheaders
+    headers: {
+
+        // Allow access from any origin during development.
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+
+    },
+
+    // @see https://webpack.js.org/configuration/dev-server/#devserverdisablehostcheck
+    // @todo Properly explain why we disable this?
+    disableHostCheck: true
+};
 
 module.exports = (options) => {
-    return merge({
-        devServer: {
-            https: {
-                ca: getenv('SSL_CA', '/usr/local/etc/httpd/ssl/ca.pem'),
-                cert: getenv('SSL_CERT', '/usr/local/etc/httpd/ssl/server.crt'),
-                key: getenv('SSL_KEY', '/usr/local/etc/httpd/ssl/server.key')
-            },
-            headers: {
-                // Allow access from local pages, as they usually are not running on the same "domain"
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': '*',
-            },
-            disableHostCheck: true,
-        }
-    }, { devServer: options.devServer })
+    return {
+        devServer: merge(defaults, options.devServer)
+    };
 };

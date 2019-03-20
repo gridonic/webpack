@@ -76,6 +76,7 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 
 | Preset | Description |
 | -------- | -------- |
+| [`https`] | Enable HTTPS support for webpack devServer. |
 | [`file`] | Use this if you need to add files in general (e.g. video in html). |
 | [`raw`] | Use this if you need to import files as strings. |
 | [`vue`] | Use this if you are going to develop a [Vue.js] application. |
@@ -121,20 +122,37 @@ const { extendConfig } = require('@gridonic/webpack');
 module.exports = extendConfig
     .usePreset('vue')
     .toConfig;
-
 ```
 
 Looking for third party configuration files like [Babel], [ESLint] or [PostCSS]? Feel free to use what ever you may like.
 
 <br>
 
-### Use https with Dev Server
+### Enable HTTPS support for webpack’s devServer
 
-Add the `https` preset to your configuration. By default, the config expects a `.ca`, `.crt` and `.key` file in the folder `/usr/local/etc/httpd/ssl/`,
-to match the ssl information you use for your apache server.
+Add the `https` preset to your webpack configuration. By default, the config expects a certificate authority (`ca.pem`) file, a server certificate (`server.crt`) file and a server key (`server.key`) file under the `/usr/local/etc/httpd/ssl` folder. 
 
-If you store your ssl files in another location, you can specify them in your local `.env` file (Or any other .env file that is ignored in git).
-Use the following keys to specify the file locations: `SSL_CA`, `SSL_CERT`, `SSL_KEY`  
+⚠️ These files **must** be used by your local web server as well.
+
+```js
+// webpack.config.js
+
+const { extendConfig } = require('@gridonic/webpack');
+
+module.exports = extendConfig
+    .usePreset('https')
+    .toConfig;
+```
+
+If you store your SSL files in another location, you can specify them in your local `.env` file. For example:
+
+```env
+# .env
+
+SSL_CA=/etc/httpd/ssl/ca.pem
+SSL_CERT=/etc/httpd/ssl/server.crt
+SSL_KEY= /etc/httpd/ssl/server.key
+```
 
 <br>
 
@@ -146,6 +164,7 @@ Use the following keys to specify the file locations: `SSL_CA`, `SSL_CERT`, `SSL
 </p>
 
 
+[`https`]: ./src/presets/https.js
 [`file`]: ./src/presets/file.js
 [`raw`]: ./src/presets/raw.js
 [`vue`]: ./src/presets/vue.js
