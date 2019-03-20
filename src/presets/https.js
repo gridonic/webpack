@@ -1,6 +1,3 @@
-// @see https://github.com/survivejs/webpack-merge
-const merge = require('webpack-merge');
-
 const env = require('../helpers/env');
 
 const defaults = {
@@ -27,8 +24,6 @@ const defaults = {
     disableHostCheck: true
 };
 
-module.exports = (options) => {
-    return {
-        devServer: merge(defaults, options.devServer)
-    };
-};
+module.exports = () => ({
+    devServer: defaults
+});
