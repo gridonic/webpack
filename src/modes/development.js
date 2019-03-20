@@ -21,17 +21,20 @@ module.exports = (options = {}) => merge({
         // @see https://webpack.js.org/configuration/devtool/#development
         devtool: 'eval-source-map',
 
+    },
+
+    // Apply any presets given by user configuration
+    ...delve(options, 'presets', []).map(handlePreset),
+
+    // Apply development related configuration
+    {
         // @see https://webpack.js.org/configuration/dev-server/
         devServer: devServer(options.devServer)
-
     },
 
     // Apply common presets that are available
     // by default in development/production
     common(
-        except(options, 'devServer', 'presets')
+        except(options, 'presets')
     ),
-
-    // Apply any presets given by user configuration
-    ...delve(options, 'presets', []).map(preset => handlePreset(preset, options))
 );

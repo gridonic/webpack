@@ -34,14 +34,14 @@ module.exports = (options = {}) => merge({
 
     },
 
+    // Apply any presets given by user configuration
+    ...delve(options, 'presets', []).map(
+        preset => handlePreset(preset, { mode: defaults.mode })
+    ),
+
     // Apply common presets that are available
     // by default in development/production
     common(
         except(merge(defaults, options), 'presets')
     ),
-
-    // Apply any presets given by user configuration
-    ...delve(options, 'presets', []).map(
-        preset => handlePreset(preset, merge(options, { mode: defaults.mode }))
-    )
 );
