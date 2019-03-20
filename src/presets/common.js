@@ -24,12 +24,7 @@ module.exports = (options = {}) => merge({
         // @see https://webpack.js.org/configuration/plugins/
         plugins: [
             friendlyErrors(),
-            clean(
-                merge({
-                    path: delve(options, 'output.path'),
-                    root: delve(options, 'context')
-                }, delve(options, 'clean'))
-            ),
+            clean(delve(options, 'clean')),
             ...asArray(delve(options, 'html', {})).map(html)
         ],
 
