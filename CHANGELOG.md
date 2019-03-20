@@ -10,8 +10,15 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [0.4.4]
+###### 2019-03-20
+
+###### Fixed
+
+- Dependencies: Move `dotenv` to dependencies in package.json
+
 ## [0.4.3]
-###### 2019-03-019
+###### 2019-03-19
 
 ###### Added
 
@@ -124,7 +131,8 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/gridonic/webpack/compare/0.4.3...HEAD
+[unreleased]: https://github.com/gridonic/webpack/compare/0.4.4...HEAD
+[0.4.4]: https://github.com/gridonic/webpack/compare/0.4.3...0.4.4
 [0.4.3]: https://github.com/gridonic/webpack/compare/0.4.2...0.4.3
 [0.4.2]: https://github.com/gridonic/webpack/compare/0.4.1...0.4.2
 [0.4.1]: https://github.com/gridonic/webpack/compare/0.4.0...0.4.1
