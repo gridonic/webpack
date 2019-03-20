@@ -18,7 +18,8 @@ module.exports = (options = {}) => merge({
         mode: 'development',
 
         // @see https://webpack.js.org/configuration/devtool/
-        devtool: 'inline-source-map',
+        // @see https://webpack.js.org/configuration/devtool/#development
+        devtool: 'eval-source-map',
 
         // @see https://webpack.js.org/configuration/dev-server/
         devServer: devServer(options.devServer)
