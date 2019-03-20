@@ -80,6 +80,7 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 | [`file`] | Use this if you need to add files in general (e.g. video in html). |
 | [`raw`] | Use this if you need to import files as strings. |
 | [`vue`] | Use this if you are going to develop a [Vue.js] application. |
+| [`yaml`] | Adds support for importing [YAML] files. |
 
 
 <br>
@@ -168,8 +169,10 @@ SSL_KEY= /etc/httpd/ssl/server.key
 [`file`]: ./src/presets/file.js
 [`raw`]: ./src/presets/raw.js
 [`vue`]: ./src/presets/vue.js
+[`yaml`]: ./src/presets/yaml.js
 
 [Vue.js]: https://vuejs.org/
+[YAML]: https://yaml.org/
 [ESLint]: https://eslint.org/
 [Babel]: https://babeljs.io/
 [PostCSS]: https://postcss.org/
