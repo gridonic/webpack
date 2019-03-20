@@ -10,6 +10,13 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [0.4.5]
+###### 2019-03-20
+
+###### Fixed
+
+- Dependencies: Update package-lock.json (fixes the "fix" from 0.4.4🙈)
+
 ## [0.4.4]
 ###### 2019-03-20
 
@@ -131,7 +138,8 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/gridonic/webpack/compare/0.4.4...HEAD
+[unreleased]: https://github.com/gridonic/webpack/compare/0.4.5...HEAD
+[0.4.5]: https://github.com/gridonic/webpack/compare/0.4.3...0.4.5
 [0.4.4]: https://github.com/gridonic/webpack/compare/0.4.3...0.4.4
 [0.4.3]: https://github.com/gridonic/webpack/compare/0.4.2...0.4.3
 [0.4.2]: https://github.com/gridonic/webpack/compare/0.4.1...0.4.2
