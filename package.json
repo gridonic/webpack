@@ -52,7 +52,8 @@
     "node": ">=10"
   },
   "devDependencies": {
-    "jest": "^24.1.0"
+    "jest": "^24.1.0",
+    "vue-template-compiler": "^2.6.10"
   },
   "directories": {
     "test": "tests"
