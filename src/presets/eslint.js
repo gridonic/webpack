@@ -1,7 +1,9 @@
+// @see https://github.com/developit/dlv
 const delve = require('dlv');
 
 // @see https://eslint.org/docs/developer-guide/nodejs-api#cliengine
 const defaults = {
+    test: /\.js$/,
     exclude: /node_modules/,
     fix: false
 };
@@ -9,7 +11,7 @@ const defaults = {
 module.exports = (options = {}) => ({
     module: {
         rules: [{
-            test: delve(options, 'test'),
+            test: delve(options, 'test', defaults.test),
             exclude: delve(options, 'exclude', defaults.exclude),
             enforce: 'pre',
 
