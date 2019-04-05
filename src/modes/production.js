@@ -36,7 +36,7 @@ module.exports = (options = {}) => merge({
 
     // Apply any presets given by user configuration
     ...delve(options, 'presets', []).map(
-        preset => handlePreset(preset, { mode: defaults.mode })
+        preset => handlePreset(preset, { mode: defaults.mode }, options)
     ),
 
     // Apply common presets that are available

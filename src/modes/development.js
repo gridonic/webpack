@@ -24,7 +24,9 @@ module.exports = (options = {}) => merge({
     },
 
     // Apply any presets given by user configuration
-    ...delve(options, 'presets', []).map(handlePreset),
+    ...delve(options, 'presets', []).map(
+        preset => handlePreset(preset, {}, options)
+    ),
 
     // Apply development related configuration
     {
