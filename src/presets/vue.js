@@ -1,5 +1,13 @@
-const delve = require('dlv');
+// @see https://github.com/survivejs/webpack-merge
 const merge = require('webpack-merge');
+
+// @see https://github.com/developit/dlv
+const delve = require('dlv');
+
+// @see https://github.com/martinandert/except
+const except = require('except');
+
+// @see https://github.com/sindresorhus/import-cwd
 const importCwd = require('import-cwd');
 
 // @see https://vue-loader.vuejs.org/
@@ -12,21 +20,42 @@ const defaults = {
     test: /\.vue$/
 };
 
-module.exports = (options = {}) => {
+module.exports = (options = {}, webpackOptions = {}) => {
 
-    // Require packages that are used by this preset
-    localRequire({
-        'vue': '^2.5.22',
-        'vue-i18n': '^8.8.0',
-        'vue-router': '^3.0.2',
-        'vuex': '^3.1.0'
-    });
+    // Automatic installtion of vue dependencies has been disabled
+    if (options.noInstall !== true) {
 
-    localRequire({
-        'vue-template-compiler': '^2.5.22'
-    }, { dev: true });
+        // Require packages that are used by this preset
+        localRequire({
+            'vue': '^2.5.22',
+            'vue-i18n': '^8.8.0',
+            'vue-router': '^3.0.2',
+            'vuex': '^3.1.0'
+        });
+
+        localRequire({
+            'vue-template-compiler': '^2.5.22'
+        }, { dev: true });
+    }
 
     return merge({
+        output: {
+
+            // Setting this to root '/' eliminates any potential hiccups when
+            // you are going to use vue-router.
+            publicPath: '/'
+
+        },
+        devServer: {
+
+            // In conjunction with the vue-router it makes sense to redirect
+            // all 404’s to the index.html.
+            //
+            // @see https://github.com/vuejs/vue-router/issues/1277
+            // @see https://webpack.js.org/configuration/dev-server/#devserverhistoryapifallback
+            historyApiFallback: true
+
+        },
         resolve: {
             extensions: ['.vue']
         },
@@ -37,9 +66,11 @@ module.exports = (options = {}) => {
                 // @see https://github.com/vuejs/vue-loader
                 use: {
                     loader: 'vue-loader',
-                    options: {
+
+                    // @see https://vue-loader.vuejs.org/options.html
+                    options: merge({
                         compiler: importCwd('vue-template-compiler')
-                    }
+                    }, except(options, 'test', 'mode'))
                 }
             }, {
 
@@ -58,12 +89,11 @@ module.exports = (options = {}) => {
             })
         ]
     }, eslint(
-
-        // @todo Why is vue-loader not picking this from our js preset?
         // @see https://vue-loader.vuejs.org/guide/#manual-configuration
+        // @see https://github.com/vuejs/vue-loader/issues/1520
         merge({
             mode: options.mode,
             test: delve(options, 'test', defaults.test)
-        }, options.eslint)
+        }, webpackOptions.eslint)
     ));
 };
