@@ -47,7 +47,13 @@ const fn = (args = [], flags = {}) => {
     }
 
     // Retrieve necessary options
-    const { host, port, hot } = webpackConfig.devServer;
+    const { host, port, hot, https } = webpackConfig.devServer;
+
+    let protocol = 'http';
+
+    if (https) {
+        protocol += 's';
+    }
 
     // Try to use port given by configuration or next free one
     portfinder.getPort({ port }, (error, freePort) => {
@@ -56,7 +62,7 @@ const fn = (args = [], flags = {}) => {
         // @see https://github.com/webpack/docs/wiki/webpack-dev-server#hot-module-replacement-with-nodejs-api
         if (hot === true) {
             const hotEntries = [
-                `webpack-dev-server/client?http://${host}:${freePort}/`,
+                `webpack-dev-server/client?${protocol}://${host}:${freePort}/`,
                 'webpack/hot/dev-server'
             ];
 
@@ -91,10 +97,10 @@ const fn = (args = [], flags = {}) => {
         info(chalk`Running in {bold development} mode…`);
 
         server.listen(freePort, host, () => {
-            info(`Local:             http://${prettyHost}:${freePort}`);
+            info(`Local:             ${protocol}://${prettyHost}:${freePort}`);
 
             if (ip) {
-                info(`On Your Network:   http://${ip}:${freePort}`)
+                info(`On Your Network:   ${protocol}://${ip}:${freePort}`)
             }
         });
     });
