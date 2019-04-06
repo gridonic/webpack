@@ -1,5 +1,8 @@
-const delve = require('dlv');
+// @see https://github.com/survivejs/webpack-merge
 const merge = require('webpack-merge');
+
+// @see https://github.com/developit/dlv
+const delve = require('dlv');
 
 const eslint = require('./eslint');
 
