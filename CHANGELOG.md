@@ -10,26 +10,51 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [1.0.0]
+###### 2019-04-08
+
+###### Fixed
+
+- Source maps not being generated for CSS/Sass
+- Eslint: Options being ignored
+- Improve webpack speed by faster source maps
+- Env helper throwing error if `.env` is not found
+- Clean: Adjust arguments in common preset
+- Logging wrong URL in `https` mode
+
+###### Changed
+
+- Improve `https` preset and documentation
+- Vue: Improve default settings
+
+###### Changed
+
+- Babel: Allow overwriting configuration
+
+
 ## [0.4.5]
 ###### 2019-03-20
 
 ###### Fixed
 
-- Dependencies: Update package-lock.json (fixes the "fix" from 0.4.4🙈)
+- Update `package-lock.json` (fixes the "fix" from 0.4.4 🙈)
+
 
 ## [0.4.4]
 ###### 2019-03-20
 
 ###### Fixed
 
-- Dependencies: Move `dotenv` to dependencies in package.json
+- Move `dotenv` to `dependencies` in `package.json`
+
 
 ## [0.4.3]
 ###### 2019-03-19
 
 ###### Added
 
-- Add: New preset `https` for using https with `devServer`  
+- New preset `https` for using https with `devServer`  
+
 
 ## [0.4.2]
 ###### 2019-03-07
@@ -138,8 +163,9 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/gridonic/webpack/compare/0.4.5...HEAD
-[0.4.5]: https://github.com/gridonic/webpack/compare/0.4.3...0.4.5
+[unreleased]: https://github.com/gridonic/webpack/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/gridonic/webpack/compare/0.4.5...1.0.0
+[0.4.5]: https://github.com/gridonic/webpack/compare/0.4.4...0.4.5
 [0.4.4]: https://github.com/gridonic/webpack/compare/0.4.3...0.4.4
 [0.4.3]: https://github.com/gridonic/webpack/compare/0.4.2...0.4.3
 [0.4.2]: https://github.com/gridonic/webpack/compare/0.4.1...0.4.2
