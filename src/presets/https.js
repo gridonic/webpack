@@ -18,10 +18,6 @@ const defaults = {
         'Access-Control-Allow-Headers': '*',
 
     },
-
-    // @see https://webpack.js.org/configuration/dev-server/#devserverdisablehostcheck
-    // @todo Properly explain why we disable this?
-    disableHostCheck: true
 };
 
 module.exports = () => ({
