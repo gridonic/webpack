@@ -1,6 +1,6 @@
 const merge = require('webpack-merge');
 
-module.exports = (preset, defaults = {}) => {
+module.exports = (preset, defaults = {}, webpackOptions = {}) => {
     let fn;
     let options;
 
@@ -12,5 +12,5 @@ module.exports = (preset, defaults = {}) => {
         throw new Error('Preset must be of type array or string.');
     }
 
-    return require(`../presets/${fn}.js`)(merge(defaults, options));
+    return require(`../presets/${fn}.js`)(merge(defaults, options), webpackOptions);
 };
