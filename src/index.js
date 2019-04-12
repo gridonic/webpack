@@ -1,4 +1,5 @@
 const merge = require('webpack-merge');
+const resolve = require('path').resolve;
 
 const cli = require('./cli');
 const development = require('./modes/development');
@@ -17,4 +18,5 @@ module.exports = {
     plugins,
     presets,
     production,
+    resolve
 };
