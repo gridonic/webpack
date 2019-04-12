@@ -160,12 +160,12 @@ SSL_KEY= /etc/httpd/ssl/server.key
 
 ### Develop a (Vue) application with Statamic as a backend
 
-We have a preset for [Statamic] related development. This should set up webpack accordingly. Currently those options are specifically available to this preset:
+We have a preset for [Statamic] related development. This should set up webpack accordingly. Currently those options are available specifically to this preset:
 
 | Preset | Description |
 | -------- | -------- |
 | `assetsPath` | Alias for `output.path`. |
-| `publicPath` | Alias for `output.publicPath`. This option will be used for **production only.** |
+| `publicPath` | Alias for `output.publicPath`. This option will be used for **production only.** ⚠️ |
 | `vhost` | Provide the vhost of your Statamic website. This domain will be whitelisted by the webpack dev server. |
 
 See below for an example.
@@ -200,6 +200,7 @@ module.exports = extendConfig
 [`raw`]: ./src/presets/raw.js
 [`vue`]: ./src/presets/vue.js
 [`yaml`]: ./src/presets/yaml.js
+[`statamic`]: ./src/presets/statamic.js
 
 [Vue.js]: https://vuejs.org/
 [YAML]: https://yaml.org/
