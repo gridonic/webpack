@@ -41,28 +41,38 @@ const fn = (args = [], flags = {}) => {
         });
     }
 
-    // Dump configuration file
-    if (delve(flags, 'dump', false) === true) {
-        return dump.fn(webpackConfig, path.join(process.cwd(), config));
-    }
-
     // Retrieve necessary options
     const { host, port, hot, https } = webpackConfig.devServer;
 
     let protocol = 'http';
 
     if (https) {
-        protocol += 's';
+        protocol = 'https';
+
+        // Replace old port in output.publicPath with new free one…
+        webpackConfig.output.publicPath = webpackConfig
+            .output
+            .publicPath
+            .replace('http', 'https');
     }
 
     // Try to use port given by configuration or next free one
-    portfinder.getPort({ port }, (error, freePort) => {
+    portfinder.getPort({ port }, (portError, freePort) => {
+
+        // Prefer devServer.public for HMR client entry. If the devServer.public
+        // has no port, use the one that’s been discovered. Otherwise fallback
+        // to "devServer.host:freePort".
+        const url = ((input) => {
+            const [domain, port = freePort] = input.split(':');
+
+            return `${domain}:${port}`;
+        })(webpackConfig.devServer.public || host);
 
         // Enable hot module replacement
         // @see https://github.com/webpack/docs/wiki/webpack-dev-server#hot-module-replacement-with-nodejs-api
         if (hot === true) {
             const hotEntries = [
-                `webpack-dev-server/client?${protocol}://${host}:${freePort}/`,
+                `webpack-dev-server/client?${protocol}://${url}/`,
                 'webpack/hot/dev-server'
             ];
 
@@ -84,6 +94,21 @@ const fn = (args = [], flags = {}) => {
 
             // @see https://webpack.js.org/plugins/hot-module-replacement-plugin/
             webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+        }
+
+        // Replace old port in output.publicPath with new free one…
+        webpackConfig.output.publicPath = webpackConfig
+            .output
+            .publicPath
+            .replace(port, freePort);
+
+        // Dump configuration file
+        if (delve(flags, 'dump', false) === true) {
+            return dump.fn(webpackConfig, path.join(process.cwd(), config));
+        }
+
+        if (portError) {
+            return error(portError);
         }
 
         const compiler = webpack(webpackConfig);
