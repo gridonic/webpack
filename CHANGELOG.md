@@ -10,6 +10,25 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [1.1.0]
+###### 2019-04-12
+
+###### Fixed
+
+- Use `devServer.public` for hmr client entry, and fallback to `host:port` otherwise
+- Webpack options not being passed to presets
+
+###### Changed
+
+- Remove `disableHostCheck` from `https` preset as this is a bad practice
+
+###### Added
+
+- Vue: Set default html template path to `./src/html/index.ejs`
+- Export `path.resolve` as `resolve`
+- Add Statamic preset 😎
+
+
 ## [1.0.0]
 ###### 2019-04-08
 
@@ -27,7 +46,7 @@ Looking for [unreleased] changes?
 - Improve `https` preset and documentation
 - Vue: Improve default settings
 
-###### Changed
+###### Added
 
 - Babel: Allow overwriting configuration
 
@@ -163,7 +182,8 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/gridonic/webpack/compare/1.0.0...HEAD
+[unreleased]: https://github.com/gridonic/webpack/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/gridonic/webpack/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/gridonic/webpack/compare/0.4.5...1.0.0
 [0.4.5]: https://github.com/gridonic/webpack/compare/0.4.4...0.4.5
 [0.4.4]: https://github.com/gridonic/webpack/compare/0.4.3...0.4.4
