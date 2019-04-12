@@ -38,6 +38,14 @@ module.exports = (options = {}, webpackOptions = {}) => {
         }, { dev: true });
     }
 
+    webpackOptions = merge(webpackOptions, {
+        presets: {
+            html: {
+                template: './src/html/index.ejs'
+            }
+        }
+    });
+
     return merge({
         output: {
 
