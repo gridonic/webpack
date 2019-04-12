@@ -76,9 +76,10 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 
 | Preset | Description |
 | -------- | -------- |
-| [`https`] | Enable HTTPS support for webpack devServer. |
 | [`file`] | Use this if you need to add files in general (e.g. video in html). |
+| [`https`] | Enable HTTPS support for webpack devServer. |
 | [`raw`] | Use this if you need to import files as strings. |
+| [`statamic`] | Use this if you are running with [Statamic]. |
 | [`vue`] | Use this if you are going to develop a [Vue.js] application. |
 | [`yaml`] | Adds support for importing [YAML] files. |
 
@@ -157,6 +158,35 @@ SSL_KEY= /etc/httpd/ssl/server.key
 
 <br>
 
+### Develop a (Vue) application with Statamic as a backend
+
+We have a preset for [Statamic] related development. This should set up webpack accordingly. Currently those options are specifically available to this preset:
+
+| Preset | Description |
+| -------- | -------- |
+| `assetsPath` | Alias for `output.path`. |
+| `publicPath` | Alias for `output.publicPath`. This option will be used for **production only.** |
+| `vhost` | Provide the vhost of your Statamic website. This domain will be whitelisted by the webpack dev server. |
+
+See below for an example.
+
+```js
+// webpack.config.js
+
+const { extendConfig, resolve } = require('@gridonic/webpack');
+
+module.exports = extendConfig
+    .usePreset('vue')
+    .usePreset('statamic', {
+        assetsPath: resolve('../public/themes/my-theme/assets/'),
+        publicPath: '/themes/my-theme/assets/',
+        vhost: 'local.my-theme.gridonic.ch',
+    })
+    .toConfig;
+``` 
+
+<br>
+
 #  
 <p align="center">
   <a href="https://gridonic.ch">gridonic.ch</a> ・
@@ -180,3 +210,4 @@ SSL_KEY= /etc/httpd/ssl/server.key
 [Imagemin]: https://github.com/imagemin/imagemin
 [@gridonic/cli]: https://github.com/gridonic/cli
 [@gridonic/generator]: https://github.com/gridonic/generator
+[Statamic]: https://statamic.com/
