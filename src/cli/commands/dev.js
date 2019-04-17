@@ -42,7 +42,7 @@ const fn = (args = [], flags = {}) => {
     }
 
     // Retrieve necessary options
-    const { host, port, hot, https } = webpackConfig.devServer;
+    const { host, port, hot, https } = (webpackConfig.devServer || {});
 
     let protocol = 'http';
 
