@@ -21,6 +21,7 @@ const { info, error } = require('@gridonic/log');
 
 const defaults = require('../defaults');
 const dump = require('../flags/dump');
+const setIfUnknown = require('../../helpers/setIfUnknown');
 
 const description = 'Run development server';
 
@@ -48,31 +49,21 @@ const fn = (args = [], flags = {}) => {
 
     if (https) {
         protocol = 'https';
-
-        // Replace old port in output.publicPath with new free one…
-        webpackConfig.output.publicPath = webpackConfig
-            .output
-            .publicPath
-            .replace('http', 'https');
     }
 
     // Try to use port given by configuration or next free one
     portfinder.getPort({ port }, (portError, freePort) => {
+        webpackConfig.devServer.port = freePort;
 
-        // Prefer devServer.public for HMR client entry. If the devServer.public
-        // has no port, use the one that’s been discovered. Otherwise fallback
-        // to "devServer.host:freePort".
-        const url = ((input) => {
-            const [domain, port = freePort] = input.split(':');
-
-            return `${domain}:${port}`;
-        })(webpackConfig.devServer.public || host);
+        // Some presets can set the publicPath to null,
+        // in order to get the value set dynamically
+        setIfUnknown(webpackConfig, 'output.publicPath', `${protocol}://${host}:${freePort}/`);
 
         // Enable hot module replacement
         // @see https://github.com/webpack/docs/wiki/webpack-dev-server#hot-module-replacement-with-nodejs-api
         if (hot === true) {
             const hotEntries = [
-                `webpack-dev-server/client?${protocol}://${url}/`,
+                `webpack-dev-server/client?${protocol}://${host}:${freePort}/`,
                 'webpack/hot/dev-server'
             ];
 
