@@ -15,6 +15,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const eslint = require('./eslint');
 const localRequire = require('../helpers/localRequire');
+const setIfUnknown = require('../helpers/setIfUnknown');
 
 const defaults = {
     test: /\.vue$/
@@ -22,7 +23,7 @@ const defaults = {
 
 module.exports = (options = {}, webpackOptions = {}) => {
 
-    // Automatic installtion of vue dependencies has been disabled
+    // Automatic installation of vue dependencies has been disabled
     if (options.noInstall !== true) {
 
         // Require packages that are used by this preset
@@ -38,13 +39,9 @@ module.exports = (options = {}, webpackOptions = {}) => {
         }, { dev: true });
     }
 
-    webpackOptions = merge(webpackOptions, {
-        presets: {
-            html: {
-                template: './src/html/index.ejs'
-            }
-        }
-    });
+    // If user did not provide html template path,
+    // use a common one for our Vue setups
+    setIfUnknown(webpackOptions, 'html.template', './src/html/index.ejs');
 
     return merge({
         output: {
