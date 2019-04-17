@@ -53,3 +53,47 @@ test('Applying a preset should work', () => {
             .find(({ test }) => test === preset.options.test)
     ).not.toBe(undefined);
 });
+
+
+test('Overriding settings of a preset', () => {
+    const customValue = 'custom';
+    const config = extendConfig
+        .reset()
+        .usePreset('vue', {
+            noInstall: true
+        })
+        .forDevelopment({
+            html: {
+                template: customValue
+            }
+        })
+        .toConfig;
+
+    expect(
+        config({ mode: development })
+            .plugins
+            .find(plugin => plugin.constructor.name === 'HtmlWebpackPlugin')
+            .options
+            .template
+    ).toBe(customValue);
+});
+
+
+
+test('Preset should override defaults', () => {
+    const config = extendConfig
+        .reset()
+        .usePreset('vue', {
+            noInstall: true
+        })
+        .toConfig;
+
+    expect(
+        config({ mode: development })
+            .plugins
+            .find(plugin => plugin.constructor.name === 'HtmlWebpackPlugin')
+            .options
+            .template
+            .indexOf('default_index.ejs') >= 0
+    ).toBe(false);
+});
