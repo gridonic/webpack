@@ -40,8 +40,11 @@ module.exports = (options = {}, webpackOptions = {}) => {
     }
 
     // If user did not provide html template path,
-    // use a common one for our Vue setups
+    // use a common one for our Vue setups.
     setIfUnknown(webpackOptions, 'html.template', './src/html/index.ejs');
+
+    // Style tags in Vue components should be linted as well.
+    setIfUnknown(webpackOptions, 'stylelint.files', ['**/*.s?(a|c)ss', '**/*.vue']);
 
     return merge({
         output: {

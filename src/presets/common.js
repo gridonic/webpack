@@ -10,7 +10,7 @@ const except = require('except');
 // @see https://github.com/scottcorgan/as-array
 const asArray = require('as-array');
 
-const { clean, html, friendlyErrors } = require('../plugins');
+const { clean, html, friendlyErrors, styleLint } = require('../plugins');
 const { entry, output, resolve, stats } = require('../options');
 
 module.exports = (options = {}) => merge({
@@ -25,6 +25,7 @@ module.exports = (options = {}) => merge({
         plugins: [
             friendlyErrors(),
             clean(delve(options, 'clean')),
+            styleLint(delve(options, 'stylelint')),
             ...asArray(delve(options, 'html', {})).map(html)
         ],
 
@@ -61,6 +62,7 @@ module.exports = (options = {}) => merge({
         'image',
         'fonts',
         'eslint',
-        'babel'
+        'babel',
+        'stylelint'
     )
 );
