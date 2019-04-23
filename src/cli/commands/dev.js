@@ -22,6 +22,8 @@ const { info, error } = require('@gridonic/log');
 const defaults = require('../defaults');
 const dump = require('../flags/dump');
 const setIfUnknown = require('../../helpers/setIfUnknown');
+const enableHmr = require('../../helpers/enableHmr');
+const enableDebug = require('../../helpers/enableDebug');
 
 const description = 'Run development server';
 
@@ -34,7 +36,8 @@ const fn = (args = [], flags = {}) => {
 
     let webpackConfig = importCwd(config);
 
-    // If webpack configuration is a function, pass flags along
+    // If webpack configuration is a function, pass flags along. This way use
+    // can implement custom behaviour based on CLI flags.
     if (typeof webpackConfig === 'function') {
         webpackConfig = webpackConfig({
             ...flags,
@@ -62,29 +65,12 @@ const fn = (args = [], flags = {}) => {
         // Enable hot module replacement
         // @see https://github.com/webpack/docs/wiki/webpack-dev-server#hot-module-replacement-with-nodejs-api
         if (hot === true) {
-            const hotEntries = [
-                `webpack-dev-server/client?${protocol}://${host}:${freePort}/`,
-                'webpack/hot/dev-server'
-            ];
-
-            if (typeof webpackConfig.entry === 'string') {
-                webpackConfig.entry = [
-                    ...hotEntries,
-                    webpackConfig.entry
-                ];
-            } else {
-                Object
-                    .entries(webpackConfig.entry)
-                    .forEach(([key, value]) => {
-                        webpackConfig.entry[key] = [
-                            ...hotEntries,
-                            value
-                        ];
-                });
-            }
-
-            // @see https://webpack.js.org/plugins/hot-module-replacement-plugin/
-            webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+            enableHmr({
+                protocol,
+                host,
+                port: freePort,
+                webpackConfig
+            });
         }
 
         // Replace old port in output.publicPath with new free one…
@@ -93,11 +79,17 @@ const fn = (args = [], flags = {}) => {
             .publicPath
             .replace(port, freePort);
 
-        // Dump configuration file
+        // Debug flag is enabled. Make everything verbose.
+        if (delve(flags, 'debug', false) === true) {
+            enableDebug({ webpackConfig });
+        }
+
+        // Dump flag is enabled. Time to dump configuration file and leave.
         if (delve(flags, 'dump', false) === true) {
             return dump.fn(webpackConfig, path.join(process.cwd(), config));
         }
 
+        // During free port scan, an error occured.
         if (portError) {
             return error(portError);
         }
