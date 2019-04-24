@@ -9,6 +9,10 @@ const defaults = {
 };
 
 module.exports = (options = {}) => {
+    if (options === false) {
+        return false;
+    }
+
     return new StyleLintPlugin(
         merge(
             defaults.options,
