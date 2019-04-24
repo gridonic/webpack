@@ -27,7 +27,7 @@ module.exports = (options = {}) => merge({
             clean(delve(options, 'clean')),
             styleLint(delve(options, 'stylelint')),
             ...asArray(delve(options, 'html', {})).map(html)
-        ],
+        ].filter(Boolean),
 
         // @see https://webpack.js.org/configuration/output/
         output: output(delve(options, 'output')),
