@@ -15,7 +15,7 @@ module.exports = (options = {}) => {
 
     return new StyleLintPlugin(
         merge(
-            defaults.options,
+            defaults,
             options
         )
     );
