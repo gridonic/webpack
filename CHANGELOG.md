@@ -10,6 +10,23 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [1.2.0]
+###### 2019-05-20
+
+###### Fixed
+
+- Missing `devServer` resulting in an error
+- `output.publicPath` replacing `https` unnecessarily
+- Vue: Using wrong key for html template path
+- Use non-zero exit code when build fails
+
+###### Added
+
+- CLI: `--debug` flag
+- [Stylelint] ([#3])
+- Allow disabling plugins if their configuration is set to `false`
+
+
 ## [1.1.0]
 ###### 2019-04-12
 
@@ -182,7 +199,8 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/gridonic/webpack/compare/1.1.0...HEAD
+[unreleased]: https://github.com/gridonic/webpack/compare/1.2.0...HEAD
+[1.2.0]: https://github.com/gridonic/webpack/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/gridonic/webpack/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/gridonic/webpack/compare/0.4.5...1.0.0
 [0.4.5]: https://github.com/gridonic/webpack/compare/0.4.4...0.4.5
@@ -197,5 +215,7 @@ First version ready for internal testing.
 [0.2.0]: https://github.com/gridonic/webpack/compare/0.1.0...0.2.0
 
 [#1]: https://github.com/gridonic/webpack/pull/1
+[#3]: https://github.com/gridonic/webpack/issues/3
 
 [@gridonic/cli]: https://github.com/gridonic/cli
+[Stylelint]: https://stylelint.io/
