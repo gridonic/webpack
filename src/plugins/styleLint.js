@@ -4,12 +4,15 @@ const merge = require('webpack-merge');
 // @see https://github.com/webpack-contrib/stylelint-webpack-plugin
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
-const defaults = {
-    failOnError: true
-};
+// @see https://github.com/davidtheclark/cosmiconfig
+const cosmiconfig = require('cosmiconfig');
+
+const defaults = {};
 
 module.exports = (options = {}) => {
-    if (options === false) {
+    const stylelintConfig = cosmiconfig('stylelint');
+
+    if (options === false || stylelintConfig.searchSync() === null) {
         return false;
     }
 
