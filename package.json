@@ -18,7 +18,7 @@
     "cosmiconfig": "^5.2.1",
     "css-loader": "^2.1.0",
     "dlv": "^1.1.2",
-    "dotenv": "^7.0.0",
+    "dotenv": "^8.0.0",
     "dset": "^2.0.1",
     "eslint-loader": "^2.1.2",
     "except": "^0.1.3",
