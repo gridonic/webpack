@@ -37,6 +37,8 @@ const fn = (args = [], flags = {}) => {
     try {
         webpack(webpackConfig).run((e, stats) => {
             if (e) {
+                process.exitCode = 1;
+
                 return error(e);
             }
 
@@ -45,6 +47,8 @@ const fn = (args = [], flags = {}) => {
             );
         });
     } catch (e) {
+        process.exitCode = 1;
+
         error(e);
     }
 };
