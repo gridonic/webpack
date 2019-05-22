@@ -28,14 +28,14 @@ module.exports = (options = {}, webpackOptions = {}) => {
 
         // Require packages that are used by this preset
         localRequire({
-            'vue': '^2.5.22',
-            'vue-i18n': '^8.8.0',
-            'vue-router': '^3.0.2',
-            'vuex': '^3.1.0'
+            'vue': '^2.6.10',
+            'vue-i18n': '^8.11.2',
+            'vue-router': '^3.0.6',
+            'vuex': '^3.1.1'
         });
 
         localRequire({
-            'vue-template-compiler': '^2.5.22'
+            'vue-template-compiler': '^2.6.10'
         }, { dev: true });
     }
 
