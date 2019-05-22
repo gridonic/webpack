@@ -10,6 +10,7 @@ module.exports = (options = {}, webpackOptions = {}) => {
     setIfUnknown(webpackOptions, 'css.extract.filename', '[name].css');
     setIfUnknown(webpackOptions, 'devServer.host', 'localhost');
     setIfUnknown(webpackOptions, 'output.path', delve(options, 'assetsPath'));
+    setIfUnknown(webpackOptions, 'output.filename', '[name].js');
 
     return {
         output: {
@@ -19,9 +20,6 @@ module.exports = (options = {}, webpackOptions = {}) => {
             publicPath: options.mode !== 'production'
                 ? null
                 : delve(options, 'publicPath'),
-
-            // Let Statamic take care of caching
-            filename: '[name].js',
         },
 
         devServer: {
