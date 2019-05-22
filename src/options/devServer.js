@@ -9,7 +9,7 @@ const defaults = {
     contentBase: context(),
 
     // @see https://webpack.js.org/configuration/dev-server/#devserver-open
-    open: true,
+    open: false,
 
     // @see https://webpack.js.org/configuration/dev-server#devserver-noinfo
     noInfo: true,
