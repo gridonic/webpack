@@ -10,6 +10,13 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [1.2.2]
+###### 2019-05-22
+
+###### Fixed
+
+- Default value for `output.filename` in Statamic’s preset not being considered
+
 ## [1.2.1]
 ###### 2019-05-22
 
@@ -17,6 +24,7 @@ Looking for [unreleased] changes?
 
 - HMR: Using wrong socketjs port when auto detecting
 - Statamic preset now should work like a charm
+
 
 ###### Changed
 
@@ -214,7 +222,8 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/gridonic/webpack/compare/1.2.1...HEAD
+[unreleased]: https://github.com/gridonic/webpack/compare/1.2.2...HEAD
+[1.2.2]: https://github.com/gridonic/webpack/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/gridonic/webpack/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/gridonic/webpack/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/gridonic/webpack/compare/1.0.0...1.1.0
