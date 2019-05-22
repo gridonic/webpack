@@ -1,22 +1,29 @@
-// @see https://github.com/survivejs/webpack-merge
-const merge = require('webpack-merge');
-
 // @see https://github.com/developit/dlv
 const delve = require('dlv');
 
+const setIfUnknown = require('../helpers/setIfUnknown');
+
 module.exports = (options = {}, webpackOptions = {}) => {
+
+    // Some settings need to be set as "user" settings,
+    // but only if the user did not provide them
+    setIfUnknown(webpackOptions, 'css.extract.filename', '[name].css');
+    setIfUnknown(webpackOptions, 'devServer.host', 'localhost');
+    setIfUnknown(webpackOptions, 'output.path', delve(options, 'assetsPath'));
+
     return {
         output: {
 
-            // Path where assets should be bundled to
-            path: delve(options, 'assetsPath'),
-
-            // Public path
+            // Only set public path on production. In development this will be
+            // set dynamically.
             publicPath: options.mode !== 'production'
-                ? `http://localhost:${delve(webpackOptions, 'devServer.port', 8080)}/`
-                : delve(options, 'publicPath')
+                ? null
+                : delve(options, 'publicPath'),
 
+            // Let Statamic take care of caching
+            filename: '[name].js',
         },
+
         devServer: {
 
             // By default assets should be written to disk as Statamic
@@ -26,9 +33,15 @@ module.exports = (options = {}, webpackOptions = {}) => {
             // Make sure HMR client always connects to localhost by default
             public: 'localhost',
 
-            allowedHosts: [
-                delve(options, 'vhost')
-            ]
+            // Make sure connections from vhost are allowed to devServer
+            allowedHosts: [delve(options, 'vhost')],
+
+            // Usually we need to enable CORS since we use a vhost.
+            // @see https://webpack.js.org/configuration/dev-server/#devserverheaders
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*',
+            },
         },
     };
 };
