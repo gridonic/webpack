@@ -87,9 +87,14 @@ module.exports = (options = {}) => {
 
     const extract = delve(options, 'css.extract', defaults.css.extract);
 
+    // We have to restrict miniCssExtract to production only for now
+    // since HMR is broken within this plugin.
+    // @see https://github.com/webpack-contrib/mini-css-extract-plugin/issues/392
+    // @see https://github.com/webpack-contrib/mini-css-extract-plugin/issues/391
+
     // Create separate CSS files instead of bundling
-    // them into the JavaScript files
-    if (extract !== false) {
+    // them into the JavaScript files.
+    if (isDevelopment === false && extract !== false) {
         result.plugins = [miniCssExtract(options.css.extract)];
 
         // Replace style-loader with mini-css-extract loader
