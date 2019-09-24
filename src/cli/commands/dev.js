@@ -16,8 +16,8 @@ const address = require('address');
 // @see https://github.com/indexzero/node-portfinder
 const portfinder = require('portfinder');
 
-// @see https://github.com/gridonic/log
-const { info, error } = require('@gridonic/log');
+// @see https://github.com/shellscape/webpack-log
+const log = (new require('webpack-log'))({ name: 'build' });
 
 const defaults = require('../defaults');
 const dump = require('../flags/dump');
@@ -91,7 +91,7 @@ const fn = (args = [], flags = {}) => {
 
         // During free port scan, an error occured.
         if (portError) {
-            return error(portError);
+            return log.error(portError);
         }
 
         const compiler = webpack(webpackConfig);
@@ -102,13 +102,13 @@ const fn = (args = [], flags = {}) => {
         const isUnspecifiedHost = host === '0.0.0.0' || host === '::';
         const prettyHost = isUnspecifiedHost ? 'localhost' : host;
 
-        info(chalk`Running in {bold development} mode…`);
+        log.info(chalk`Running in {bold development} mode…`);
 
         server.listen(freePort, host, () => {
-            info(`Local:             ${protocol}://${prettyHost}:${freePort}`);
+            log.info(`Local:             ${protocol}://${prettyHost}:${freePort}`);
 
             if (ip) {
-                info(`On Your Network:   ${protocol}://${ip}:${freePort}`)
+                log.info(`On Your Network:   ${protocol}://${ip}:${freePort}`)
             }
         });
     });

@@ -7,8 +7,8 @@ const delve = require('dlv');
 // @see https://github.com/sindresorhus/import-cwd
 const importCwd = require('import-cwd');
 
-// @see https://github.com/gridonic/log
-const { error } = require('@gridonic/log');
+// @see https://github.com/shellscape/webpack-log
+const log = (new require('webpack-log'))({ name: 'build' });
 
 const defaults = require('../defaults');
 const dump = require('../flags/dump');
@@ -39,7 +39,7 @@ const fn = (args = [], flags = {}) => {
             if (e) {
                 process.exitCode = 1;
 
-                return error(e);
+                return log.error(e);
             }
 
             console.log(
@@ -49,7 +49,7 @@ const fn = (args = [], flags = {}) => {
     } catch (e) {
         process.exitCode = 1;
 
-        error(e);
+        log.error(e);
     }
 };
 

@@ -11,12 +11,6 @@ const defaults = {
     // @see https://webpack.js.org/configuration/dev-server/#devserver-open
     open: false,
 
-    // @see https://webpack.js.org/configuration/dev-server#devserver-noinfo
-    noInfo: true,
-
-    // @see https://webpack.js.org/configuration/dev-server#devserver-quiet
-    quiet: true,
-
     // @see https://webpack.js.org/configuration/dev-server/#devserver-overlay
     overlay: true,
 
@@ -29,7 +23,10 @@ const defaults = {
     // @see https://webpack.js.org/configuration/dev-server/#devserver-hot
     // @see https://webpack.js.org/concepts/hot-module-replacement/
     // @see https://webpack.js.org/guides/hot-module-replacement/
-    hot: true
+    hot: true,
+
+    // @see https://webpack.js.org/configuration/output/#outputpublicpath
+    publicPath: '/'
 };
 
 module.exports = (options = {}) => merge(defaults, options);

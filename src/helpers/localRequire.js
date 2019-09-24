@@ -13,8 +13,8 @@ const merge = require('webpack-merge');
 // @see https://github.com/shelljs/shelljs
 const shell = require('shelljs');
 
-// @see https://github.com/gridonic/log
-const { info } = require('@gridonic/log');
+// @see https://github.com/shellscape/webpack-log
+const log = (new require('webpack-log'))({ name: 'build' });
 
 module.exports = (dependencies, options = {}) => {
     const key = delve(options, 'dev', false) === true ? 'devDependencies' : 'dependencies';
@@ -48,7 +48,7 @@ module.exports = (dependencies, options = {}) => {
         merge(pkg, { [key]: missingOnes })
     );
 
-    info(`Installing missing ${key}…`, 1, 1);
+    log.info(`Installing missing ${key}…`, 1, 1);
 
     // Install them via npm
     shell.exec('npm install');
