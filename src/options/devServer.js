@@ -26,7 +26,10 @@ const defaults = {
     hot: true,
 
     // @see https://webpack.js.org/configuration/output/#outputpublicpath
-    publicPath: '/'
+    publicPath: '/',
+
+    // @see https://webpack.js.org/configuration/dev-server/#devservernoinfo-
+    noInfo: true,
 };
 
 module.exports = (options = {}) => merge(defaults, options);
