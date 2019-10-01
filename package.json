@@ -41,7 +41,7 @@
     "shelljs": "^0.8.3",
     "style-loader": "^1.0.0",
     "stylelint": "^11.0.0",
-    "stylelint-webpack-plugin": "^0.10.5",
+    "stylelint-webpack-plugin": "^1.0.1",
     "url-loader": "^2.1.0",
     "vue-loader": "^15.7.1",
     "webpack": "^4.41.0",
