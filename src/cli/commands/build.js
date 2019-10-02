@@ -7,6 +7,9 @@ const delve = require('dlv');
 // @see https://github.com/sindresorhus/import-cwd
 const importCwd = require('import-cwd');
 
+// @see https://github.com/chalk/chalk
+const chalk = require('chalk');
+
 // @see https://github.com/shellscape/webpack-log
 const log = (new require('webpack-log'))({ name: 'build' });
 
@@ -34,23 +37,42 @@ const fn = (args = [], flags = {}) => {
         return dump.fn(webpackConfig, path.join(process.cwd(), config));
     }
 
-    try {
-        webpack(webpackConfig).run((e, stats) => {
-            if (e) {
-                process.exitCode = 1;
+    log.info(chalk`Running in {bold production} mode…`);
 
-                return log.error(e);
-            }
+    // @see https://webpack.js.org/api/node/
+    const compiler = webpack(webpackConfig, (error, stats) => {
+        if (stats.hasErrors() === false && (error === undefined || error === null)) {
+            log.info(stats.toString(webpackConfig.stats));
+            log.info('Build complete.');
 
-            console.log(
-                stats.toString(webpackConfig.stats)
-            );
-        });
-    } catch (e) {
+            return;
+        }
+
         process.exitCode = 1;
 
-        log.error(e);
-    }
+        // Fatal webpack errors (wrong configuration, etc)
+        if (error) {
+            log.error(error.stack || error);
+
+            if (error.details) {
+                log.error(error.details)
+            }
+
+            return;
+        }
+
+        // Compilation errors (missing modules, syntax errors, etc)
+        if (stats.hasErrors()) {
+            log.error(stats.toString(webpackConfig.stats));
+        }
+
+        // Compilation warnings
+        if (stats.hasWarnings()) {
+            log.warn(stats.toString(webpackConfig.stats));
+        }
+
+        log.info('Build incomplete.');
+    });
 };
 
 module.exports = {
