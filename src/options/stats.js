@@ -5,9 +5,11 @@ module.exports = {
     builtAt: true,
     colors: true,
     env: true,
+    errors: true,
     hash: true,
     performance: true,
     publicPath: true,
     timings: true,
-    version: true
+    version: true,
+    warnings: true
 };
