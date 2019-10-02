@@ -1,4 +1,5 @@
 const common = require('./presets/common');
+const copy = require('./presets/copy');
 const css = require('./presets/css');
 const eslint = require('./presets/eslint');
 const file = require('./presets/file');
@@ -13,6 +14,7 @@ const yaml = require('./presets/yaml');
 
 module.exports = {
     common,
+    copy,
     css,
     eslint,
     file,
