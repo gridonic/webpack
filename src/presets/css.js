@@ -30,7 +30,7 @@ module.exports = (options = {}) => {
             // @see https://github.com/webpack-contrib/style-loader
             {
                 loader: 'style-loader',
-                options: merge({ sourceMap: isDevelopment }, delve(options, 'style'))
+                options: delve(options, 'style')
             },
 
             // @see https://github.com/webpack-contrib/css-loader
