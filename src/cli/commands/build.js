@@ -47,7 +47,7 @@ const fn = (args = [], flags = {}) => {
 
     // @see https://webpack.js.org/api/node/
     const compiler = webpack(webpackConfig, (error, stats) => {
-        if (stats.hasErrors() === false && (error === undefined || error === null)) {
+        if ((stats && stats.hasErrors() === false) && (error === undefined || error === null)) {
             log.info(stats.toString(webpackConfig.stats));
             log.info('Build complete.');
 
@@ -68,12 +68,12 @@ const fn = (args = [], flags = {}) => {
         }
 
         // Compilation errors (missing modules, syntax errors, etc)
-        if (stats.hasErrors()) {
+        if (stats && stats.hasErrors()) {
             log.error(stats.toString(webpackConfig.stats));
         }
 
         // Compilation warnings
-        if (stats.hasWarnings()) {
+        if (stats && stats.hasWarnings()) {
             log.warn(stats.toString(webpackConfig.stats));
         }
 
