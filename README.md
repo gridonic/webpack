@@ -82,6 +82,7 @@ Our webpack setup should be flexible and simple to use at the same time. That’
 | [`statamic`] | Use this if you are running with [Statamic]. |
 | [`vue`] | Use this if you are going to develop a [Vue.js] application. |
 | [`yaml`] | Adds support for importing [YAML] files. |
+| [`copy`] | Use this if you need to copy static files. |
 
 
 <br>
@@ -201,6 +202,7 @@ module.exports = extendConfig
 [`vue`]: ./src/presets/vue.js
 [`yaml`]: ./src/presets/yaml.js
 [`statamic`]: ./src/presets/statamic.js
+[`copy`]: ./src/presets/copy.js
 
 [Vue.js]: https://vuejs.org/
 [YAML]: https://yaml.org/

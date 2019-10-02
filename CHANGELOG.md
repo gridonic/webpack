@@ -10,12 +10,25 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [1.3.0]
+###### 2019-10-02
+
+###### Fixed
+
+- Build errors not resulting in a `exitCode > 0` :tada:
+
+###### Added
+
+- Preset for [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin)
+
+
 ## [1.2.2]
 ###### 2019-05-22
 
 ###### Fixed
 
 - Default value for `output.filename` in Statamic’s preset not being considered
+
 
 ## [1.2.1]
 ###### 2019-05-22
@@ -222,7 +235,8 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/gridonic/webpack/compare/1.2.2...HEAD
+[unreleased]: https://github.com/gridonic/webpack/compare/1.3.0...HEAD
+[1.3.0]: https://github.com/gridonic/webpack/compare/1.2.2...1.3.0
 [1.2.2]: https://github.com/gridonic/webpack/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/gridonic/webpack/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/gridonic/webpack/compare/1.1.0...1.2.0
