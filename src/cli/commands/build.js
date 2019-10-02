@@ -15,6 +15,7 @@ const log = (new require('webpack-log'))({ name: 'build' });
 
 const defaults = require('../defaults');
 const dump = require('../flags/dump');
+const enableDebug = require('../../helpers/enableDebug');
 
 const description = 'Create production build';
 
@@ -30,6 +31,11 @@ const fn = (args = [], flags = {}) => {
             ...flags,
             mode: 'production'
         });
+    }
+
+    // Debug flag is enabled. Make everything verbose.
+    if (delve(flags, 'debug', false) === true) {
+        enableDebug({ webpackConfig });
     }
 
     // Dump configuration file
