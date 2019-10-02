@@ -10,6 +10,16 @@ Looking for [unreleased] changes?
 
 <br>
 
+## [1.3.1]
+###### 2019-10-02
+
+###### Fixed
+
+- Log errors and warnings by default as well
+- Remove deprecated `style-loader` options
+- Enable `-b` flag for `build` command
+
+
 ## [1.3.0]
 ###### 2019-10-02
 
@@ -235,7 +245,8 @@ Looking for [unreleased] changes?
 
 First version ready for internal testing.
 
-[unreleased]: https://github.com/gridonic/webpack/compare/1.3.0...HEAD
+[unreleased]: https://github.com/gridonic/webpack/compare/1.3.1...HEAD
+[1.3.1]: https://github.com/gridonic/webpack/compare/1.3.0...1.3.1
 [1.3.0]: https://github.com/gridonic/webpack/compare/1.2.2...1.3.0
 [1.2.2]: https://github.com/gridonic/webpack/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/gridonic/webpack/compare/1.2.0...1.2.1
