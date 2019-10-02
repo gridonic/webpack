@@ -12,11 +12,11 @@ const type = 'boolean';
 const description = 'Dumps the configuration';
 
 const fn = (webpackConfig, pathToConfig) => {
-    log.info(chalk`Dumping {green ${pathToConfig}}…`, 1);
+    log.info(chalk`Dumping {green ${pathToConfig}}…`);
 
     qi.print(webpackConfig);
 
-    log.success('Finished.', 0, 1);
+    log.info('Finished.');
 };
 
 module.exports = {
