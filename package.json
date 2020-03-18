@@ -43,7 +43,7 @@
     "style-loader": "^1.0.0",
     "stylelint": "^11.0.0",
     "stylelint-webpack-plugin": "^1.0.1",
-    "url-loader": "^2.1.0",
+    "url-loader": "^4.0.0",
     "vue-loader": "^15.7.1",
     "webpack": "^4.41.0",
     "webpack-dev-server": "^3.8.1",
